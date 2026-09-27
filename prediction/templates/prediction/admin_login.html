@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login - Smart Energy Analytics</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(0, 180, 255, 0.18),
+                    transparent 35%
+                ),
+                #07121e;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 430px;
+
+            padding: 40px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .icon {
+            text-align: center;
+
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            text-align: center;
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+
+            color: #aebdca;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            color: #dbe7ef;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            margin-bottom: 20px;
+
+            border-radius: 9px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            background: rgba(255, 255, 255, 0.07);
+
+            color: white;
+
+            outline: none;
+
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: rgba(0, 180, 255, 0.6);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            padding-right: 75px;
+        }
+
+        .show-password {
+            position: absolute;
+
+            right: 10px;
+
+            top: 10px;
+
+            padding: 7px 9px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            color: #dbe7ef;
+
+            cursor: pointer;
+
+            font-size: 12px;
+        }
+
+        .show-password:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .login-button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #1687c9;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+
+            background: #126fa5;
+        }
+
+        .error-message {
+            padding: 10px 12px;
+
+            margin-bottom: 20px;
+
+            border-radius: 8px;
+
+            background: rgba(220, 60, 60, 0.15);
+
+            border: 1px solid rgba(220, 60, 60, 0.3);
+
+            color: #ffb5b5;
+
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+        .back-home {
+            display: block;
+
+            margin-top: 22px;
+
+            text-align: center;
+
+            color: #aebdca;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        .back-home:hover {
+            color: white;
+        }
+
+        .security-note {
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #748794;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+
+            .login-container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="icon">
+        🛡️
+    </div>
+
+    <h1>
+        Admin Login
+    </h1>
+
+    <p class="subtitle">
+        Smart Energy Analytics Administration
+    </p>
+
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="error-message">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label for="username">
+            Username
+        </label>
+
+        <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter admin username"
+            required
+        >
+
+
+        <label for="password">
+            Password
+        </label>
+
+        <div class="password-container">
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter admin password"
+                required
+            >
+
+            <button
+                type="button"
+                class="show-password"
+                onclick="togglePassword()"
+            >
+                Show
+            </button>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-button"
+        >
+            Login to Dashboard
+        </button>
+
+    </form>
+
+
+    <a
+        href="{% url 'home' %}"
+        class="back-home"
+    >
+        ← Back to Home
+    </a>
+
+
+    <div class="security-note">
+        Authorized administrators only.
+        Your password is handled through Django's
+        secure authentication system.
+    </div>
+
+</div>
+
+
+<script>
+
+    function togglePassword() {
+
+        const password =
+            document.getElementById("password");
+
+        const button =
+            document.querySelector(".show-password");
+
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            button.textContent = "Hide";
+
+        } else {
+
+            password.type = "password";
+
+            button.textContent = "Show";
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>

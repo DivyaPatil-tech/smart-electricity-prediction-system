@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Details - Smart Energy</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fa;
+            color: #17212b;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #07121e, #17212b);
+            color: white;
+            padding: 28px 30px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .header h1 {
+            font-size: 27px;
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        .header p {
+            color: #b7c5cf;
+            font-size: 14px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+
+            border: 1px solid #e8edf1;
+        }
+
+        .section h2 {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .detail {
+            background: #f7f9fb;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .label {
+            display: block;
+            color: #71808c;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .value {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .result-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .result-card {
+            padding: 25px;
+            border-radius: 12px;
+            background: #ffffff;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            transition: 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(99,102,241,0.12);
+        }
+
+        .result-title {
+            color: #71808c;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .result-value {
+            font-size: 30px;
+            font-weight: bold;
+            color: #4f6f8f;
+            margin-top: 5px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 11px 20px;
+            background: #00A6FD;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #008ED6;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+
+            .details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-section {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            ⚡ Prediction Details
+        </h1>
+
+        <p>
+            Complete household electricity prediction information
+        </p>
+
+    </div>
+
+
+    <!-- BACK BUTTON -->
+
+    <a href="{% url 'admin_dashboard' %}"
+       class="back-button">
+
+        ← Back to Dashboard
+
+    </a>
+
+
+    <!-- USER INFORMATION -->
+
+    <section class="section">
+
+        <h2>
+            👤 User Information
+        </h2>
+
+        <div class="details-grid">
+
+            <div class="detail">
+
+                <span class="label">
+                    Username
+                </span>
+
+                <span class="value">
+                    {{ prediction.username }}
+                </span>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span class="label">
+                    Prediction Date
+                </span>
+
+                <span class="value">
+                    {{ prediction.created_at|date:"d M Y, H:i" }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOUSEHOLD INFORMATION -->
+
+    <section class="section">
+
+        <h2>
+            🏠 Household Information
+        </h2>
+
+        <div class="details-grid">
+
+            <div class="detail">
+                <span class="label">Month</span>
+                <span class="value">{{ prediction.month }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Month Number</span>
+                <span class="value">{{ prediction.month_number }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Number of People</span>
+                <span class="value">{{ prediction.number_of_people }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Number of Rooms</span>
+                <span class="value">{{ prediction.number_of_rooms }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">AC Count</span>
+                <span class="value">{{ prediction.ac_count }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Fan Count</span>
+                <span class="value">{{ prediction.fan_count }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Refrigerator</span>
+                <span class="value">{{ prediction.refrigerator }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Washing Machine</span>
+                <span class="value">{{ prediction.washing_machine }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Television Count</span>
+                <span class="value">{{ prediction.television_count }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Geyser</span>
+                <span class="value">{{ prediction.geyser }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Water Pump</span>
+                <span class="value">{{ prediction.water_pump }}</span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Computer Count</span>
+                <span class="value">{{ prediction.computer_count }}</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- USAGE AND ENVIRONMENT -->
+
+    <section class="section">
+
+        <h2>
+            🌡️ Usage & Environment
+        </h2>
+
+        <div class="details-grid">
+
+            <div class="detail">
+                <span class="label">Temperature</span>
+                <span class="value">
+                    {{ prediction.temperature }} °C
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Occupancy Hours</span>
+                <span class="value">
+                    {{ prediction.occupancy_hours }} hours
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Weekend Usage</span>
+                <span class="value">
+                    {% if prediction.weekend_usage %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Daily AC Hours</span>
+                <span class="value">
+                    {{ prediction.daily_ac_hours }} hours
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Daily Fan Hours</span>
+                <span class="value">
+                    {{ prediction.daily_fan_hours }} hours
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Daily TV Hours</span>
+                <span class="value">
+                    {{ prediction.daily_tv_hours }} hours
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Daily Geyser Hours</span>
+                <span class="value">
+                    {{ prediction.daily_geyser_hours }} hours
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Daily Washing Machine Hours</span>
+                <span class="value">
+                    {{ prediction.daily_washing_machine_hours }} hours
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Average Daily Usage</span>
+                <span class="value">
+                    {{ prediction.average_daily_usage_hours }} hours
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Previous Month Consumption</span>
+                <span class="value">
+                    {{ prediction.previous_month_consumption_kwh }} kWh
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Season</span>
+                <span class="value">
+                    {{ prediction.season }}
+                </span>
+            </div>
+
+            <div class="detail">
+                <span class="label">Cooling Degree</span>
+                <span class="value">
+                    {{ prediction.cooling_degree }}
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREDICTION RESULT -->
+
+    <section class="section">
+
+        <h2>
+            ⚡ Prediction Result
+        </h2>
+
+        <div class="result-section">
+
+            <div class="result-card">
+
+                <div class="result-title">
+                    Predicted Monthly Consumption
+                </div>
+
+                <div class="result-value">
+                    {{ prediction.predicted_consumption_kwh|floatformat:2 }}
+                    kWh
+                </div>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <div class="result-title">
+                    Estimated Monthly Electricity Bill
+                </div>
+
+                <div class="result-value">
+                    ₹{{ prediction.predicted_bill|floatformat:2 }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+</body>
+
+</html>

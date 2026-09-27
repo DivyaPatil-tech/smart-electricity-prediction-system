@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Energy Prediction</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(7, 20, 45, 0.55),
+                    rgba(8, 30, 60, 0.60)
+                ),
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            padding: 35px 20px;
+
+            color: #17212b;
+        }
+
+        .main-container {
+            width: 1100px;
+
+            max-width: 100%;
+
+            margin: auto;
+
+            background: rgba(255, 255, 255, 0.90);
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.40);
+        }
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #0879b5;
+
+            font-size: 32px;
+
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #687783;
+
+            font-size: 15px;
+        }
+
+        .section-title {
+            font-size: 21px;
+
+            color: #17212b;
+
+            font-weight: bold;
+
+            padding-bottom: 12px;
+
+            margin-bottom: 22px;
+
+            border-bottom: 2px solid #1595d1;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px 25px;
+        }
+
+        .field {
+            width: 100%;
+        }
+
+        .field label {
+            display: block;
+
+            font-weight: bold;
+
+            color: #34495e;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccd5dc;
+
+            border-radius: 8px;
+
+            background: white;
+
+            font-size: 14px;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            outline: none;
+
+            border-color: #1595d1;
+
+            box-shadow:
+                0 0 0 3px rgba(21,149,209,0.12);
+        }
+        .button-area {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .predict-button {
+            width: 100%;
+            max-width: 400px;
+
+            padding: 15px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                #0879b5,
+                #12a4df
+            );
+
+            color: white;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px rgba(8,121,181,0.30);
+        }
+
+        .predict-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(8,121,181,0.40);
+        }
+
+        .result-section {
+            margin-top: 35px;
+
+            padding-top: 25px;
+
+            border-top: 2px solid #d9e3e9;
+        }
+
+        .result-title {
+            text-align: center;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: #0879b5;
+
+            margin-bottom: 22px;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        .result-card {
+            padding: 30px 25px;
+            border-radius: 16px;
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #dbe5eb;
+            box-shadow:
+                0 7px 20px rgba(0, 0, 0, 0.09);
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+            min-height: 155px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.14);
+        }
+
+        .result-icon {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        .result-label {
+            font-size: 15px;
+
+            font-weight: bold;
+
+            color: #52616b;
+
+            margin-bottom: 12px;
+        }
+
+        .result-value {
+            font-size: 30px;
+            font-weight: 700;
+            color: #0879b5;
+            margin-top: 2px;
+        }
+
+        .bill-card .result-value {
+            color: #168447;
+        }
+
+        .new-prediction-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .new-prediction-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 210px;
+            padding: 13px 22px;
+            background: linear-gradient(
+                135deg,
+                #0879b5,
+                #12a4df
+            );
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 15px rgba(8,121,181,0.20);
+        }
+
+        .new-prediction-button:hover {
+            background: linear-gradient(
+                135deg,
+                #065f8c,
+                #0879b5
+            );
+            transform: translateY(-2px);
+            box-shadow: 0 9px 20px rgba(8,121,181,0.30);
+        }
+
+        .logout-area {
+            text-align: right;
+
+            margin-top: 25px;
+        }
+
+        .logout-area a {
+            color: #c62828;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .logout-area a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+
+            .main-container {
+                padding: 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-container {
+                padding: 15px;
+            }
+
+            .result-card {
+                width: 100%;
+            }
+
+            .new-prediction-area {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .new-prediction-button,
+            .report-button {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+        .consumption-level-card {
+            margin-top: 28px;
+            padding: 26px;
+            background: linear-gradient(135deg, #f8fcff, #eef8fc);
+            border: 1px solid #d7e7ef;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        .consumption-level-title {
+            font-size: 21px;
+            font-weight: 700;
+            color: #0879b5;
+            margin-bottom: 18px;
+        }
+
+        .consumption-level {
+            display: inline-block;
+            padding: 11px 26px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .consumption-level-card p {
+            margin-top: 12px;
+            color: #52616b;
+            line-height: 1.6;
+        }
+
+        .consumption-level.low {
+            background: #e8f7ee;
+            color: #168447;
+        }
+
+        .consumption-level.moderate {
+            background: #fff6d8;
+            color: #9a7200;
+        }
+
+        .consumption-level.high {
+            background: #fdeaea;
+            color: #c62828;
+        }
+
+        /* Top Energy-Consuming Factors */
+
+        .energy-factors-section {
+            margin-top: 32px;
+        }
+
+        .energy-factors-title {
+            font-size: 23px;
+            font-weight: bold;
+            color: #0879b5;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .energy-factors-card {
+            background: #ffffff;
+            border: 1px solid #dbe5eb;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        .energy-factor-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 17px 10px;
+            border-bottom: 1px solid #e5edf2;
+            transition: background 0.2s ease;
+        }
+
+        .energy-factor-item:last-child {
+            border-bottom: none;
+        }
+
+        .energy-factor-item:hover {
+            background: #f8fcff;
+            border-radius: 10px;
+        }
+
+        .energy-factor-rank {
+            font-size: 22px;
+            min-width: 35px;
+        }
+
+        .energy-factor-info {
+            flex: 1;
+        }
+
+        .energy-factor-name {
+            font-weight: 700;
+            color: #34495e;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .energy-factor-description {
+            margin-top: 4px;
+            color: #687783;
+            font-size: 14px;
+        }
+
+        .energy-factor-score {
+            background: #eef8ff;
+            color: #0879b5;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .energy-factor-score.high-impact {
+            background: #fdeaea;
+            color: #c62828;
+        }
+
+        .energy-factor-score.moderate-impact {
+            background: #fff6d8;
+            color: #9a7200;
+        }
+
+        .energy-factor-score.low-impact {
+            background: #e8f7ee;
+            color: #168447;
+        }
+
+        .recommendation-section {
+            margin-top: 32px;
+        }
+
+        .recommendation-title {
+            font-size: 23px;
+            font-weight: bold;
+            color: #0879b5;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .recommendation-card {
+            background: linear-gradient(135deg, #f7fcff, #eef9fd);
+            border: 1px solid #cfe8f5;
+            border-radius: 16px;
+            padding: 22px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 8px;
+            border-bottom: 1px solid #dcecf4;
+            font-size: 15px;
+            line-height: 1.65;
+            color: #34495e;
+            transition: background 0.2s ease;
+        }
+
+        .recommendation-item:hover {
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 10px;
+        }
+
+        .recommendation-item:last-child {
+            border-bottom: none;
+        }
+
+        .recommendation-icon {
+            font-size: 20px;
+        }
+
+        .download-report-area {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .download-report-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 245px;
+            padding: 13px 22px;
+            background: linear-gradient(
+                135deg,
+                #168447,
+                #1aa05a
+            );
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 16px rgba(22,132,71,0.20);
+        }
+
+        .download-report-button:hover {
+        background: linear-gradient(
+        135deg,
+        #116b3a,
+        #168447
+        );
+        transform: translateY(-2px);
+        box-shadow: 0 9px 20px rgba(22,132,71,0.30);
+        }
+
+        .energy-chatbot {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 9999;
+        }
+
+        /* Floating button */
+
+        .chatbot-toggle {
+            width: 62px;
+            height: 62px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0879b5, #12a4df);
+            color: white;
+            font-size: 27px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(8, 121, 181, 0.30);
+            transition: all 0.25s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 11px 25px rgba(8, 121, 181, 0.38);
+        }
+
+        /* Chat window */
+
+        .chatbot-window {
+            display: none;
+            position: absolute;
+            right: 0;
+            bottom: 78px;
+            width: 360px;
+            max-height: 520px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+            border: 1px solid #dbe5eb;
+        }
+
+
+        /* Header */
+
+        .chatbot-header {
+            background: #0879b5;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .chatbot-header small {
+            display: block;
+            margin-top: 4px;
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        .chatbot-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* Messages */
+
+        .chatbot-messages {
+            height: 350px;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f5f8fa;
+        }
+
+        .chatbot-message {
+            max-width: 85%;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .bot-message {
+            background: white;
+            border: 1px solid #e0e6ea;
+        }
+
+        .user-message {
+            background: #0879b5;
+            color: white;
+            margin-left: auto;
+        }
+
+        /* Input */
+
+        .chatbot-input-area {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid #e1e8ed;
+            background: #f8fbfd;
+        }
+
+        .chatbot-input-area input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ccd5db;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .chatbot-input-area input:focus {
+            border-color: #0879b5;
+        }
+
+        .chatbot-input-area button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #0879b5, #12a4df);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chatbot-input-area button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 12px rgba(8, 121, 181, 0.25);
+        }
+
+        /* Mobile */
+
+        @media (max-width: 500px) {
+
+            .chatbot-window {
+                width: calc(100vw - 30px);
+                right: -10px;
+                max-height: 70vh;
+            }
+
+            .energy-chatbot {
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .chatbot-toggle {
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+        }
+
+            .user-profile-card {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                width: fit-content;
+                margin-left: auto;
+                margin-bottom: 18px;
+                background: #ffffff;
+                border: 1px solid #dbe5eb;
+                border-radius: 12px;
+                padding: 8px 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            }
+
+            .user-avatar {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: #eef8ff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+            }
+
+            .user-profile-info {
+                flex: 1;
+            }
+
+            .user-profile-name {
+                font-size: 15px;
+                font-weight: 700;
+                color: #34495e;
+            }
+
+            .user-profile-role {
+                font-size: 12px;
+                color: #71808c;
+                margin-top: 2px;
+            }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="main-container">
+
+    <!-- Logged-in User -->
+    <div class="user-profile-card">
+
+        <div class="user-avatar">
+            👤
+        </div>
+
+        <div class="user-profile-info">
+            <div class="user-profile-name">
+                {{ request.user.username }}
+            </div>
+
+            <div class="user-profile-role">
+                Logged in as User
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="header">
+
+        <h1>
+            ⚡ Smart Household Electricity Prediction
+        </h1>
+
+        <p>
+            Enter your household details to predict
+            monthly electricity consumption and bill.
+        </p>
+
+    </div>
+
+
+    <div class="section-title">
+        🏠 Household Information
+    </div>
+
+
+    <form method="POST" id="prediction-form" onsubmit="this.setAttribute('data-submitting', 'true');">
+
+        {% csrf_token %}
+
+
+        <div class="form-grid">
+
+            {% for field in form %}
+
+                <div class="field">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <small>
+                            {{ field.help_text }}
+                        </small>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+
+                        <div class="error">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button
+                type="submit"
+                class="predict-button">
+
+                ⚡ Predict Electricity
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+    {% if prediction is not None %}
+
+            <div class="result-section">
+
+                <div class="result-title">
+                    ⚡ Prediction Result
+                </div>
+
+
+                <div class="result-grid">
+
+
+                    <div class="result-card" id="prediction-result">
+
+                        <div class="result-icon">
+                            ⚡
+                        </div>
+
+                        <div class="result-label">
+                            Monthly Electricity Consumption
+                        </div>
+
+                        <div class="result-value">
+                            {{ prediction }} kWh
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-card bill-card">
+
+                        <div class="result-icon">
+                            ₹
+                        </div>
+
+                        <div class="result-label">
+                            Estimated Monthly Electricity Bill
+                        </div>
+
+                        <div class="result-value">
+                            ₹{{ estimated_bill }}
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!-- Consumption Level Indicator -->
+            <div class="consumption-level-card">
+
+                <div class="consumption-level-title">
+                    📊 Consumption Level
+                </div>
+
+                {% if consumption_level == "Low" %}
+
+                    <div class="consumption-level low">
+                        🟢 Low Consumption
+                    </div>
+
+                    <p>
+                        Your predicted monthly electricity consumption is relatively low.
+                        Continue following energy-saving practices.
+                    </p>
+
+                {% elif consumption_level == "Moderate" %}
+
+                    <div class="consumption-level moderate">
+                        🟡 Moderate Consumption
+                    </div>
+
+                    <p>
+                        Your predicted monthly electricity consumption is moderate.
+                        Reducing unnecessary appliance usage can help lower consumption.
+                    </p>
+
+                {% elif consumption_level == "High" %}
+
+                    <div class="consumption-level high">
+                        🔴 High Consumption
+                    </div>
+
+                    <p>
+                        Your predicted monthly electricity consumption is high.
+                        Focus on reducing the usage of high-energy appliances such as
+                        ACs, geysers and other heavy appliances.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="new-prediction-area">
+
+            <a href="#prediction-form"
+            class="new-prediction-button">
+                🔄 Make Another Prediction
+            </a>
+            <a href="{% url 'prediction_history' %}"
+            class="new-prediction-button">
+                📊 Prediction History
+            </a>
+
+        </div>
+
+        {% endif %}
+
+        {% if top_energy_factors %}
+<div class="energy-factors-section">
+
+    <div class="energy-factors-title">
+        🔎 Top Energy-Consuming Factors
+    </div>
+
+    <div class="energy-factors-card">
+
+        {% for factor in top_energy_factors %}
+
+        <div class="energy-factor-item">
+
+            <div class="energy-factor-rank">
+
+                {% if forloop.counter == 1 %}
+                    🥇
+                {% elif forloop.counter == 2 %}
+                    🥈
+                {% else %}
+                    🥉
+                {% endif %}
+
+            </div>
+
+            <div class="energy-factor-info">
+
+                <div class="energy-factor-name">
+                    {{ factor.name }}
+                </div>
+
+                <div class="energy-factor-description">
+                    {{ factor.description }}
+                </div>
+
+            </div>
+
+            <div class="energy-factor-score
+            {% if factor.impact == 'High' %}
+                high-impact
+            {% elif factor.impact == 'Moderate' %}
+                moderate-impact
+            {% else %}
+                low-impact
+            {% endif %}">
+
+            {% if factor.impact == "High" %}
+                🔴 High Impact
+            {% elif factor.impact == "Moderate" %}
+                🟡 Moderate Impact
+            {% else %}
+                🟢 Low Impact
+            {% endif %}
+
+        </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+{% endif %}
+
+
+        {% if recommendations %}
+        <div class="recommendation-section">
+
+            <div class="recommendation-title">
+                💡 Personalized Energy-Saving Recommendations
+            </div>
+
+            <div class="recommendation-card">
+
+                {% for recommendation in recommendations %}
+                    <div class="recommendation-item">
+                        <span class="recommendation-icon">⚡</span>
+                        <span>{{ recommendation }}</span>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <!-- Download Prediction Report -->
+        <div class="download-report-area">
+
+            <a href="{% url 'download_prediction_report' %}"
+            class="download-report-button">
+                📄 Download Prediction Report
+            </a>
+
+        </div>
+        
+        {% endif %}
+
+        
+
+        <div class="logout-area">
+
+            <a href="{% url 'logout' %}">
+                Logout
+            </a>
+
+        </div>
+
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const predictionResult = document.getElementById("prediction-result");
+
+    if (predictionResult) {
+        setTimeout(function () {
+            predictionResult.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }, 300);
+    }
+
+});
+</script>
+
+<!-- Smart Energy Chatbot -->
+
+<div class="energy-chatbot">
+
+    <!-- Chatbot Button -->
+    <button type="button"
+            class="chatbot-toggle"
+            onclick="toggleEnergyChatbot()">
+        🤖
+    </button>
+
+    <!-- Chatbot Window -->
+    <div class="chatbot-window" id="energyChatbotWindow">
+
+        <div class="chatbot-header">
+            <div>
+                <strong>Smart Energy Assistant</strong>
+                <small>Ask me about your electricity usage</small>
+            </div>
+
+            <button type="button"
+                    class="chatbot-close"
+                    onclick="toggleEnergyChatbot()">
+                ×
+            </button>
+        </div>
+
+        <div class="chatbot-messages" id="chatbotMessages">
+
+            <div class="chatbot-message bot-message">
+                Hello! 👋 I'm your Smart Energy Assistant.
+                <br><br>
+                Ask me about your electricity consumption,
+                estimated bill, or energy-saving tips.
+            </div>
+
+        </div>
+
+        <div class="chatbot-input-area">
+
+            <input type="text"
+                   id="chatbotInput"
+                   placeholder="Type your question..."
+                   autocomplete="off">
+
+            <button type="button"
+                    onclick="sendChatbotMessage()">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleEnergyChatbot() {
+
+    const chatbot =
+        document.getElementById("energyChatbotWindow");
+
+    if (chatbot.style.display === "block") {
+        chatbot.style.display = "none";
+    } else {
+        chatbot.style.display = "block";
+    }
+}
+
+
+function getCSRFToken() {
+
+    const name = "csrftoken=";
+
+    const cookies = document.cookie.split(";");
+
+    for (let cookie of cookies) {
+
+        cookie = cookie.trim();
+
+        if (cookie.startsWith(name)) {
+            return decodeURIComponent(
+                cookie.substring(name.length)
+            );
+        }
+    }
+
+    return "";
+}
+
+
+function sendChatbotMessage() {
+
+    const input =
+        document.getElementById("chatbotInput");
+
+    const message =
+        input.value.trim();
+
+    if (!message) {
+        return;
+    }
+
+    const messages =
+        document.getElementById("chatbotMessages");
+
+    // Display user message
+
+    const userMessage =
+        document.createElement("div");
+
+    userMessage.className =
+        "chatbot-message user-message";
+
+    userMessage.textContent =
+        message;
+
+    messages.appendChild(userMessage);
+
+    input.value = "";
+
+    // Send message to Django
+
+    fetch("{% url 'energy_chatbot' %}", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type":
+                "application/x-www-form-urlencoded",
+
+            "X-CSRFToken":
+                getCSRFToken()
+        },
+
+        body:
+            "message=" +
+            encodeURIComponent(message)
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        const botMessage =
+            document.createElement("div");
+
+        botMessage.className =
+            "chatbot-message bot-message";
+
+        botMessage.textContent =
+            data.response;
+
+        messages.appendChild(botMessage);
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+    })
+
+    .catch(error => {
+
+        const errorMessage =
+            document.createElement("div");
+
+        errorMessage.className =
+            "chatbot-message bot-message";
+
+        errorMessage.textContent =
+            "Sorry, something went wrong. Please try again.";
+
+        messages.appendChild(errorMessage);
+
+        console.error(error);
+    });
+}
+
+
+// Press Enter to send
+
+document.getElementById("chatbotInput")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            sendChatbotMessage();
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>
+
+
+
+

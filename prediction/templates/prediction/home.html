@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Energy Analytics</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(7, 18, 30, 0.88),
+                    rgba(7, 18, 30, 0.92)
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(0, 180, 255, 0.20),
+                    transparent 35%
+                ),
+                #07121e;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.45);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .hero {
+            padding: 65px 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .badge {
+            display: inline-block;
+
+            width: fit-content;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: 42px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+        }
+
+        h1 span {
+            display: block;
+        }
+
+        .description {
+            color: #c5d1dc;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            max-width: 600px;
+
+            margin-bottom: 25px;
+        }
+
+        .features {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 10px;
+        }
+
+        .feature {
+            padding: 8px 12px;
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, 0.07);
+
+            color: #dbe7ef;
+
+            font-size: 13px;
+        }
+
+        .login-section {
+            padding: 45px 35px;
+
+            background: rgba(255, 255, 255, 0.045);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .login-section h2 {
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+        .login-section p {
+            color: #aebdca;
+
+            font-size: 14px;
+
+            margin-bottom: 28px;
+
+            line-height: 1.5;
+        }
+
+        .login-card {
+            display: block;
+
+            text-decoration: none;
+
+            color: white;
+
+            padding: 18px 20px;
+
+            margin-bottom: 15px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            background: rgba(255, 255, 255, 0.06);
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-3px);
+
+            background: rgba(255, 255, 255, 0.10);
+
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .login-card strong {
+            display: block;
+
+            font-size: 17px;
+
+            margin-bottom: 5px;
+        }
+
+        .login-card small {
+            color: #aebdca;
+
+            font-size: 13px;
+        }
+
+        .icon {
+            font-size: 25px;
+
+            margin-bottom: 8px;
+        }
+
+        .footer-text {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #7f929f;
+
+            font-size: 12px;
+        }
+
+        @media (max-width: 800px) {
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 40px 30px;
+            }
+
+            .login-section {
+                padding: 35px 30px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 35px 22px;
+            }
+
+            .login-section {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <section class="hero">
+
+        <div class="badge">
+            AI • ENERGY • ANALYTICS
+        </div>
+
+        <h1>
+            Smart Energy
+            <span>Analytics</span>
+        </h1>
+
+        <p class="description">
+            Smart Household Electricity Consumption
+            &amp; Electricity Bill Prediction System
+            powered by Machine Learning.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                ⚡ Consumption Prediction
+            </div>
+
+            <div class="feature">
+                ₹ Bill Estimation
+            </div>
+
+            <div class="feature">
+                📊 Energy Analytics
+            </div>
+
+            <div class="feature">
+                🤖 Machine Learning
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RIGHT SIDE -->
+    <section class="login-section">
+
+        <h2>
+            Welcome
+        </h2>
+
+        <p>
+            Select your access type to continue.
+        </p>
+
+
+        <!-- ADMIN LOGIN -->
+
+        <a href="{% url 'admin_login' %}"
+        class="login-card">
+
+            <div class="icon">
+                🛡️
+            </div>
+
+            <strong>
+                Admin Login
+            </strong>
+
+            <small>
+                Manage users, predictions and analytics
+            </small>
+
+        </a>
+
+
+        <!-- USER LOGIN -->
+
+        <a href="{% url 'login' %}"
+           class="login-card">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <strong>
+                User Login
+            </strong>
+
+            <small>
+                Predict consumption and manage your history
+            </small>
+
+        </a>
+
+
+        <div class="footer-text">
+            Smart energy insights powered by Machine Learning
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

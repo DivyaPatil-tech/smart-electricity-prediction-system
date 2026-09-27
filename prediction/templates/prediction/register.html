@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register - Smart Energy Analytics</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(7, 20, 45, 0.84),
+                    rgba(8, 30, 60, 0.88)
+                ),
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            padding: 40px 20px;
+
+            color: white;
+        }
+
+        .register-container {
+            width: 700px;
+
+            max-width: 100%;
+
+            margin: auto;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            border-radius: 22px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.40);
+        }
+
+        .brand {
+            text-align: center;
+
+            color: #087fce;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+
+            color: #667085;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #102a43;
+
+            font-size: 18px;
+
+            margin-top: 25px;
+
+            margin-bottom: 18px;
+
+            padding-bottom: 8px;
+
+            border-bottom: 2px solid #e5edf5;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+
+            color: #344054;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            background: white;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: #1687c9;
+
+            box-shadow:
+                0 0 0 3px rgba(22, 135, 201, 0.12);
+        }
+
+        .error {
+            color: #c62828;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+        .help {
+            color: #667085;
+
+            font-size: 12px;
+
+            margin-top: 5px;
+
+            line-height: 1.5;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+
+            text-align: center;
+        }
+
+        .success {
+            color: #26733d;
+
+            background: #e7f6ec;
+
+            padding: 10px;
+
+            border-radius: 8px;
+        }
+
+        .error-message {
+            color: #b42318;
+
+            background: #ffe4e4;
+
+            padding: 10px;
+
+            border-radius: 8px;
+        }
+     /* Register Button */
+
+        .register-button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                #087fce,
+                #1559a6
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+            transition: 0.3s;
+        }
+
+        .register-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(21, 89, 166, 0.30);
+        }
+
+        .login-link {
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #667085;
+
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #087fce;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            text-align: center;
+
+            margin-top: 12px;
+        }
+
+        .back-home a {
+            color: #667085;
+
+            font-size: 13px;
+
+            text-decoration: none;
+        }
+
+        .back-home a:hover {
+            color: #087fce;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .register-container {
+                padding: 25px 20px;
+            }
+
+            .brand {
+                font-size: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <div class="brand">
+            ⚡ Smart Energy
+        </div>
+
+        <div class="subtitle">
+            Create your account to predict household
+            electricity consumption and bills
+        </div>
+
+        {% if messages %}
+
+            <div class="messages">
+
+                {% for message in messages %}
+
+                    <p class="{% if message.tags == 'error' %}error-message{% else %}success{% endif %}">
+                        {{ message }}
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <h3 class="section-title">
+                👤 Personal Information
+            </h3>
+
+            <div class="field">
+
+                <label for="{{ form.full_name.id_for_label }}">
+                    Full Name
+                </label>
+
+                {{ form.full_name }}
+
+                {% for error in form.full_name.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="field">
+
+                <label for="{{ form.age.id_for_label }}">
+                    Age
+                </label>
+
+                {{ form.age }}
+
+                {% for error in form.age.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="field">
+
+                <label for="{{ form.city.id_for_label }}">
+                    City
+                </label>
+
+                {{ form.city }}
+
+                {% for error in form.city.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="field">
+
+                <label for="{{ form.state.id_for_label }}">
+                    State
+                </label>
+
+                {{ form.state }}
+
+                {% for error in form.state.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+<div class="field">
+
+                <label for="{{ form.contact_number.id_for_label }}">
+                    📱 Contact Number
+                </label>
+
+                {{ form.contact_number }}
+
+                {% for error in form.contact_number.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="{{ form.photo.id_for_label }}">
+                    📷 Profile Photo
+                </label>
+
+                {{ form.photo }}
+
+                {% for error in form.photo.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <h3 class="section-title">
+                🔐 Account Information
+            </h3>
+
+
+            <div class="field">
+
+                <label for="{{ form.username.id_for_label }}">
+                    👤 Username
+                </label>
+
+                {{ form.username }}
+
+                {% for error in form.username.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="{{ form.email.id_for_label }}">
+                    📧 Email Address
+                </label>
+
+                {{ form.email }}
+
+                {% for error in form.email.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="{{ form.password1.id_for_label }}">
+                    🔒 Password
+                </label>
+
+                {{ form.password1 }}
+
+                <div class="help">
+                    Use a strong password. Django will securely hash it.
+                </div>
+
+                {% for error in form.password1.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="{{ form.password2.id_for_label }}">
+                    🔒 Confirm Password
+                </label>
+
+                {{ form.password2 }}
+
+                {% for error in form.password2.errors %}
+                    <div class="error">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="register-button"
+            >
+                ⚡ Create Account
+            </button>
+
+        </form>
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </div>
+
+
+        <div class="back-home">
+
+            <a href="/">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

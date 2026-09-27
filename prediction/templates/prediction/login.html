@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Login - Smart Energy Analytics</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(10, 20, 45, 0.80),
+                    rgba(10, 20, 45, 0.80)
+                ),
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+        }
+
+        .login-container {
+            width: 420px;
+            max-width: 90%;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            border-radius: 20px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #d9e5ff;
+            margin-bottom: 30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+        <div class="logo">
+            ⚡ Smart Energy
+        </div>
+
+        <div class="subtitle">
+            User Login
+        </div>
+
+        <h2 style="
+            text-align:center;
+            margin-bottom:10px;
+            color:white;
+        ">
+            Welcome Back!
+        </h2>
+
+        <p style="
+            text-align:center;
+            color:#d9e5ff;
+            font-size:14px;
+            margin-bottom:25px;
+        ">
+            Login to your electricity prediction account
+        </p>
+
+
+        <!-- Django Messages -->
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div style="
+                    background:#ffe4e4;
+                    color:#b42318;
+                    padding:10px;
+                    border-radius:8px;
+                    margin-bottom:15px;
+                    font-size:14px;
+                    text-align:center;
+                ">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+        <!-- Login Form -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div style="margin-bottom:20px;">
+
+                <label style="
+                    display:block;
+                    margin-bottom:8px;
+                    font-size:14px;
+                    font-weight:bold;
+                ">
+                    👤 Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                    style="
+                        width:100%;
+                        padding:13px;
+                        border:none;
+                        border-radius:9px;
+                        font-size:14px;
+                        outline:none;
+                    "
+                >
+
+            </div>
+
+
+            <div style="margin-bottom:20px;">
+
+                <label style="
+                    display:block;
+                    margin-bottom:8px;
+                    font-size:14px;
+                    font-weight:bold;
+                ">
+                    🔒 Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                    style="
+                        width:100%;
+                        padding:13px;
+                        border:none;
+                        border-radius:9px;
+                        font-size:14px;
+                        outline:none;
+                    "
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                style="
+                    width:100%;
+                    padding:14px;
+                    border:none;
+                    border-radius:9px;
+                    background:#1687c9;
+                    color:white;
+                    font-size:16px;
+                    font-weight:bold;
+                    cursor:pointer;
+                "
+            >
+                ⚡ Login
+            </button>
+
+        </form>
+
+<!-- Create Account -->
+
+        <p style="
+            text-align:center;
+            margin-top:22px;
+            color:#d9e5ff;
+            font-size:14px;
+        ">
+
+            Don't have an account?
+
+            <a
+                href="{% url 'register' %}"
+                style="
+                    color:#ffffff;
+                    font-weight:bold;
+                    text-decoration:none;
+                "
+            >
+                Create Account
+            </a>
+
+        </p>
+
+
+        <!-- Back to Home -->
+
+        <div style="
+            text-align:center;
+            margin-top:15px;
+        ">
+
+            <a
+                href="/"
+                style="
+                    color:#d9e5ff;
+                    font-size:13px;
+                    text-decoration:none;
+                "
+            >
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

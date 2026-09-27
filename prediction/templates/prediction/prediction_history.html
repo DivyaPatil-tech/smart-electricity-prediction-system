@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction History</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef8ff, #f8fbff);
+            color: #243447;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .header {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .user-profile-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+            margin-left: auto;
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            background: #ffffff;
+            border: 1px solid #dbe5eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #eef8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .user-profile-info {
+            text-align: left;
+        }
+
+        .user-profile-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #34495e;
+        }
+
+        .user-profile-role {
+            font-size: 12px;
+            color: #71808c;
+            margin-top: 2px;
+        }
+
+
+        .header h1 {
+            margin: 0;
+            color: #0879b5;
+        }
+
+        .header p {
+            margin-top: 8px;
+            color: #667788;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        th {
+            background: #0879b5;
+            color: white;
+            padding: 14px;
+            text-align: center;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #e5edf2;
+        }
+
+        tr:hover {
+            background: #f5fbff;
+        }
+
+        .consumption {
+            font-weight: bold;
+            color: #0879b5;
+        }
+
+        .bill {
+            font-weight: bold;
+            color: #198754;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 17px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .predict-btn {
+            background: #0879b5;
+            color: white;
+        }
+
+        .dashboard-btn {
+            background: #eef3f7;
+            color: #34495e;
+        }
+
+        .btn:hover {
+            opacity: 0.88;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Logged-in User -->
+    <div class="user-profile-card">
+
+        <div class="user-avatar">
+            👤
+        </div>
+
+        <div class="user-profile-info">
+            <div class="user-profile-name">
+                {{ request.user.username }}
+            </div>
+
+            <div class="user-profile-role">
+                Logged in as User
+            </div>
+        </div>
+
+    </div>
+
+    <div class="header">
+
+        <h1>📊 My Prediction History</h1>
+
+        <p>
+            View your previous electricity consumption predictions
+            and estimated bills.
+        </p>
+
+    </div>
+
+
+    <div class="history-card">
+
+        {% if predictions %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Month</th>
+                    <th>Consumption (kWh)</th>
+                    <th>Estimated Bill (₹)</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for prediction in predictions %}
+
+                <tr>
+
+                    <td>
+                        {{ prediction.created_at|date:"d M Y, h:i A" }}
+                    </td>
+
+                    <td>
+                        {{ prediction.month }}
+                    </td>
+
+                    <td class="consumption">
+                        {{ prediction.predicted_consumption_kwh|floatformat:2 }}
+                    </td>
+
+                    <td class="bill">
+                        ₹{{ prediction.predicted_bill|floatformat:2 }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="empty">
+
+            <div style="font-size:40px;">📭</div>
+
+            <p>
+                You don't have any prediction history yet.
+            </p>
+
+            <p>
+                Make your first electricity prediction to see it here.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="buttons">
+
+        <a href="{% url 'prediction_home' %}"
+           class="btn predict-btn">
+            ⚡ Make New Prediction
+        </a>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>
