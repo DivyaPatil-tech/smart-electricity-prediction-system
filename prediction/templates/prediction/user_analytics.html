@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Energy Analytics</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            background:
+
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(14, 165, 164, 0.14),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(22, 135, 201, 0.14),
+                    transparent 35%
+                ),
+
+                #07121e;
+
+            color: #e8f4fa;
+
+            min-height: 100vh;
+        }
+
+
+        .analytics-container {
+
+            width: 92%;
+
+            max-width: 1150px;
+
+            margin: 40px auto;
+        }
+
+        /* =========================================
+   ANALYTICS SIDEBAR
+   ========================================= */
+
+.dashboard-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 235px;
+    height: 100vh;
+
+    padding: 24px 16px;
+    box-sizing: border-box;
+
+    background: rgba(7, 18, 30, 0.96);
+    border-right: 1px solid rgba(125, 211, 252, 0.18);
+
+    backdrop-filter: blur(18px);
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.18);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 10px 25px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    border-bottom: 1px solid rgba(125, 211, 252, 0.14);
+}
+
+.sidebar-menu {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 15px;
+
+    color: #cbd9e3 !important;
+
+    text-decoration: none !important;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.sidebar-link span:first-child {
+    width: 22px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.sidebar-link:hover {
+    color: #ffffff !important;
+
+    background: rgba(14, 165, 164, 0.14);
+
+    border-color: rgba(125, 211, 252, 0.20);
+
+    transform: translateX(3px);
+}
+
+.sidebar-link.active {
+    color: #ffffff !important;
+
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 164, 0.85),
+        rgba(22, 135, 201, 0.85)
+    );
+
+    border-color: rgba(125, 211, 252, 0.45);
+
+    box-shadow: 0 7px 20px rgba(14, 165, 164, 0.20);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(125, 211, 252, 0.14);
+}
+
+.sidebar-link.logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+
+    border-color: rgba(239, 68, 68, 0.25);
+}
+
+
+/* Move Analytics Content Beside Sidebar */
+
+.analytics-container {
+    width: calc(100% - 235px);
+    max-width: none;
+
+    margin-left: 235px;
+    margin-right: 0;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+}
+
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+    .dashboard-sidebar {
+        width: 200px;
+    }
+
+    .analytics-container {
+        width: calc(100% - 200px);
+        margin-left: 200px;
+    }
+
+}
+
+        /* BRAND */
+
+        .analytics-brand {
+
+            margin-bottom: 12px;
+
+            color: #7dd3fc;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .analytics-brand span {
+
+            color: #9fb1bd;
+
+            font-weight: 500;
+        }
+
+
+        /* HEADER */
+
+        .analytics-header {
+    margin-bottom: 28px;
+    padding: 26px 30px;
+
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(125, 211, 252, 0.16);
+    border-radius: 18px;
+
+    backdrop-filter: blur(14px);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+}
+
+.analytics-header h1 {
+    margin: 0 0 8px;
+
+    font-size: 30px;
+    font-weight: 750;
+
+    color: #ffffff;
+}
+
+.analytics-header p {
+    margin: 0;
+
+    color: #a9bdca;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+        /* SUMMARY GRID */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+
+        /* SUMMARY CARD */
+
+        .summary-card {
+    position: relative;
+
+    padding: 24px;
+    min-height: 170px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14, 165, 164, 0.13),
+            rgba(22, 135, 201, 0.09)
+        );
+
+    border: 1px solid rgba(125, 211, 252, 0.20);
+
+    box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.22);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+        .summary-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(125, 211, 252, 0.45);
+
+    box-shadow:
+        0 20px 40px rgba(14, 165, 164, 0.14);
+        }
+
+        .summary-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    border-radius: 14px;
+
+    background: rgba(125, 211, 252, 0.10);
+
+    border: 1px solid rgba(125, 211, 252, 0.20);
+
+    font-size: 23px;
+}
+
+        .summary-label {
+
+            color: #9fb1bd;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 8px;
+        }
+
+
+        .summary-value {
+
+            color: #7dd3fc;
+
+            font-size: 25px;
+
+            font-weight: 700;
+        }
+
+
+        .summary-value span {
+
+            font-size: 13px;
+
+            color: #9fb1bd;
+
+            font-weight: 500;
+        }
+
+
+        /* NOTE */
+
+        
+
+        .analytics-note {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            margin-top: 22px;
+
+            padding: 18px 20px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            border:
+                1px solid
+                rgba(125, 211, 252, 0.12);
+        }
+
+
+        .analytics-note > span {
+
+            font-size: 21px;
+        }
+
+
+        .analytics-note strong {
+
+            color: #ffffff;
+
+            font-size: 14px;
+        }
+
+
+        .analytics-note p {
+
+            margin: 5px 0 0;
+
+            color: #9fb1bd;
+
+            font-size: 13px;
+        }
+
+
+        /* ACTIONS */
+
+        .analytics-actions {
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 16px;
+
+            margin-top: 30px;
+            margin-bottom: 20px;
+
+            padding-top: 6px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .analytics-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 190px;
+
+    padding: 12px 20px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid rgba(125, 211, 252, 0.30);
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    color: #ffffff !important;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.10);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+        .analytics-btn:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(125, 211, 252, 0.55);
+
+    background:
+        rgba(14, 165, 164, 0.12);
+
+    box-shadow:
+        0 10px 24px rgba(14, 165, 164, 0.12);
+}
+
+        .analytics-btn.primary {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5a4,
+                    #1687c9
+                );
+
+            border-color:
+                rgba(125, 211, 252, 0.55);
+        }
+
+         .chart-card {
+    margin-top: 24px;
+
+    padding: 26px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7, 18, 30, 0.78),
+            rgba(12, 35, 52, 0.62)
+        );
+
+    border: 1px solid rgba(125, 211, 252, 0.18);
+
+    box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.22);
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.chart-card:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(125, 211, 252, 0.30);
+
+    box-shadow:
+        0 20px 42px rgba(14, 165, 164, 0.10);
+}
+
+    .chart-heading h2 {
+
+        margin: 0;
+
+        color: #ffffff;
+
+        font-size: 19px;
+        font-weight: 700;
+
+        letter-spacing: 0.2px;
+    }
+
+
+    .chart-heading p {
+
+        margin: 8px 0 0;
+
+        color: #9fb1bd;
+
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+
+    .chart-container {
+
+        position: relative;
+
+        width: 100%;
+
+        height: 330px;
+
+        margin-top: 20px;
+    }
+
+
+    #consumptionTrendChart {
+
+        width: 100% !important;
+
+        height: 100% !important;
+    }
+
+
+    @media (max-width: 600px) {
+
+        .chart-card {
+
+            padding: 18px;
+        }
+
+        .chart-container {
+
+            height: 280px;
+        }
+    }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .summary-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .analytics-container {
+
+                width: 94%;
+
+                margin: 20px auto;
+            }
+
+
+            .analytics-header {
+
+                padding: 22px;
+            }
+
+
+            .analytics-header h1 {
+
+                font-size: 23px;
+            }
+
+
+            .summary-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .summary-card {
+
+                min-height: 140px;
+            }
+
+
+            .analytics-actions {
+
+                flex-direction: column;
+            }
+
+
+            .analytics-btn {
+
+                width: 100%;
+            }
+        }
+
+/* =========================================
+   KEY ENERGY INSIGHT
+========================================= */
+
+.insight-card {
+    margin-top: 24px;
+
+    padding: 24px 26px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 165, 164, 0.16),
+            rgba(22, 135, 201, 0.10)
+        );
+
+    border: 1px solid rgba(125, 211, 252, 0.25);
+
+    box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(125, 211, 252, 0.40);
+
+    box-shadow:
+        0 20px 42px rgba(14, 165, 164, 0.12);
+}
+
+
+
+.insight-icon {
+    width: 56px;
+    height: 56px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: rgba(125, 211, 252, 0.12);
+
+    border: 1px solid rgba(125, 211, 252, 0.28);
+
+    font-size: 27px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.insight-content {
+    flex: 1;
+}
+
+.insight-label {
+    color: #7dd3fc;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+
+    margin-bottom: 4px;
+}
+
+.insight-content h2 {
+    margin: 0 0 6px;
+
+    color: #ffffff;
+
+    font-size: 19px;
+}
+
+.insight-content h2 {
+    color: #ffffff;
+}
+
+.insight-content h2.trend-above {
+    color: #fbbf24;
+}
+
+.insight-content h2.trend-below {
+    color: #34d399;
+}
+
+.insight-content h2.trend-equal {
+    color: #7dd3fc;
+}
+
+.insight-content p {
+    margin: 0;
+
+    color: #c7d6df;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+
+    .insight-card {
+        padding: 18px;
+
+        align-items: flex-start;
+    }
+
+    .insight-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 21px;
+    }
+
+    .insight-content h2 {
+        font-size: 17px;
+    }
+
+    .insight-content p {
+        font-size: 13px;
+    }
+}
+/* =========================================
+   RECENT PREDICTIONS
+========================================= */
+
+.recent-card {
+    margin-top: 24px;
+    padding: 26px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7, 18, 30, 0.80),
+            rgba(12, 35, 52, 0.64)
+        );
+
+    border: 1px solid rgba(125, 211, 252, 0.18);
+
+    box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.22);
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.recent-card:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(125, 211, 252, 0.30);
+
+    box-shadow:
+        0 20px 42px rgba(14, 165, 164, 0.10);
+}
+
+.recent-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.recent-table {
+    width: 100%;
+    min-width: 650px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(125, 211, 252, 0.12);
+    border-radius: 12px;
+}
+
+.recent-table thead {
+    background:
+        rgba(125, 211, 252, 0.08);
+}
+
+.recent-table th {
+    padding: 14px 16px;
+
+    color: #7dd3fc;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid rgba(125, 211, 252, 0.16);
+}
+.recent-table tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+.recent-table tbody tr:hover {
+    background:
+        rgba(125, 211, 252, 0.045);
+}
+
+.recent-table td {
+    padding: 15px 16px;
+
+    color: #d7e5ec;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid rgba(125, 211, 252, 0.08);
+}
+
+.recent-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.recent-table th {
+    padding: 13px 14px;
+
+    text-align: left;
+
+    color: #7dd3fc;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: .7px;
+    text-transform: uppercase;
+
+    border-bottom: 1px solid rgba(125,211,252,.18);
+}
+
+.recent-table td {
+    padding: 14px;
+
+    color: #d5e2eb;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid rgba(125,211,252,.08);
+}
+
+.recent-table tbody tr {
+    transition: background .2s ease;
+}
+
+.recent-table tbody tr:hover {
+    background: rgba(125,211,252,.05);
+}
+
+.recent-table td:nth-child(2) {
+    color: #7dd3fc;
+    font-weight: 700;
+}
+
+.recent-table td:nth-child(3) {
+    color: #34d399;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.recent-table td:nth-child(4) {
+    color: #34d399;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.recent-view-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 62px;
+
+    padding: 7px 13px;
+
+    border-radius: 9px;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 165, 164, 0.80),
+            rgba(22, 135, 201, 0.80)
+        );
+
+    border: 1px solid rgba(125, 211, 252, 0.35);
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 14px rgba(14, 165, 164, 0.12);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.recent-view-btn:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(125, 211, 252, 0.60);
+
+    box-shadow:
+        0 8px 18px rgba(14, 165, 164, 0.20);
+}
+
+.no-predictions {
+    margin-top: 20px;
+    padding: 20px;
+
+    text-align: center;
+
+    color: #9fb1bd;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.03);
+}
+
+@media (max-width: 600px) {
+
+    .recent-card {
+        padding: 18px;
+    }
+
+    .recent-table {
+        min-width: 600px;
+    }
+
+    .recent-table th,
+    .recent-table td {
+        padding: 11px 10px;
+    }
+}
+
+/* =========================================
+   FULL HISTORY ACTION
+========================================= */
+
+.recent-history-action {
+    margin-top: 14px;
+    text-align: right;
+}
+
+.recent-history-action a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    color: #dbeafe !important;
+
+    background:
+        rgba(14, 165, 164, 0.10);
+
+    border:
+        1px solid rgba(125, 211, 252, 0.28);
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.10);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.recent-history-action a:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(14, 165, 164, 0.20);
+
+    border-color:
+        rgba(125, 211, 252, 0.50);
+
+    box-shadow:
+        0 9px 20px rgba(14, 165, 164, 0.12);
+}
+
+@media (max-width: 600px) {
+
+    .recent-history-action {
+        text-align: center;
+    }
+
+    .recent-history-action a {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* =========================================
+   USAGE HIGHLIGHTS
+========================================= */
+
+.usage-insight-card {
+    margin-top: 22px;
+    padding: 24px;
+
+    border-radius: 16px;
+
+    background: rgba(7,18,30,.68);
+
+    border: 1px solid rgba(125,211,252,.16);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,.20);
+
+    backdrop-filter: blur(14px);
+}
+
+.usage-highlight-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-top: 20px;
+}
+
+.usage-highlight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(125, 211, 252, 0.025)
+        );
+
+    border: 1px solid rgba(125, 211, 252, 0.12);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.14);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.usage-highlight:hover {
+    transform: translateY(-4px);
+
+    background:
+        rgba(125, 211, 252, 0.055);
+
+    border-color:
+        rgba(125, 211, 252, 0.25);
+
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+.usage-highlight-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 23px;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+.usage-highlight.peak .usage-highlight-icon {
+    background: rgba(251,191,36,.10);
+
+    border: 1px solid rgba(251,191,36,.20);
+}
+
+.usage-highlight.lowest .usage-highlight-icon {
+    background: rgba(52,211,153,.10);
+
+    border: 1px solid rgba(52,211,153,.20);
+}
+
+.usage-highlight-content {
+    min-width: 0;
+}
+
+.usage-highlight-content span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #9fb1bd;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.usage-highlight.peak .usage-highlight-content span {
+    color: #fbbf24;
+}
+
+.usage-highlight.lowest .usage-highlight-content span {
+    color: #34d399;
+}
+
+.usage-highlight-content strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 19px;
+}
+
+.usage-highlight-content p {
+    margin: 4px 0 0;
+
+    color: #9fb1bd;
+
+    font-size: 12px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .usage-insight-card {
+        padding: 18px;
+    }
+
+    .usage-highlight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .usage-highlight {
+        padding: 15px;
+    }
+
+    .usage-highlight-content strong {
+        font-size: 17px;
+    }
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="dashboard-sidebar">
+
+        <div class="sidebar-brand">
+            ⚡
+            <span>Smart Energy</span>
+        </div>
+
+        <div class="sidebar-menu">
+
+            <a href="{% url 'user_dashboard' %}" class="sidebar-link">
+                <span>🏠</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{% url 'prediction_home' %}" class="sidebar-link">
+                <span>⚡</span>
+                <span>New Prediction</span>
+            </a>
+
+            <a href="{% url 'user_analytics' %}" class="sidebar-link active">
+                <span>📊</span>
+                <span>My Energy Analytics</span>
+            </a>
+
+            <a href="{% url 'prediction_history' %}" class="sidebar-link">
+                <span>📜</span>
+                <span>Prediction History</span>
+            </a>
+
+            <a href="{% url 'download_prediction_report' %}" class="sidebar-link">
+                <span>📄</span>
+                <span>Download Report</span>
+            </a>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <a href="{% url 'logout' %}" class="sidebar-link logout-link">
+                <span>🚪</span>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <div class="analytics-container">
+
+
+    <div class="analytics-brand">
+        ⚡ Smart Energy Analytics
+        <span>/ My Energy Analytics</span>
+    </div>
+
+    <div class="analytics-header">
+
+        <h1>📈 My Energy Analytics</h1>
+
+        <p>
+            Understand your electricity consumption and estimated
+            electricity costs from your prediction history.
+        </p>
+
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+            <div class="summary-icon">📊</div>
+
+            <div class="summary-label">
+                Total Predictions
+            </div>
+
+            <div class="summary-value">
+                {{ total_predictions }}
+            </div>
+        </div>
+
+
+        <div class="summary-card">
+            <div class="summary-icon">⚡</div>
+
+            <div class="summary-label">
+                Average Consumption
+            </div>
+
+            <div class="summary-value">
+                {% if average_consumption %}
+                    {{ average_consumption|floatformat:2 }}
+                    <span>kWh</span>
+                {% else %}
+                    —
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="summary-card">
+            <div class="summary-icon">💰</div>
+
+            <div class="summary-label">
+                Average Estimated Bill
+            </div>
+
+            <div class="summary-value">
+                {% if average_bill %}
+                    ₹{{ average_bill|floatformat:2 }}
+                {% else %}
+                    —
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="summary-card">
+            <div class="summary-icon">🔥</div>
+
+            <div class="summary-label">
+                Highest Consumption
+            </div>
+
+            <div class="summary-value">
+                {% if highest_consumption %}
+                    {{ highest_consumption|floatformat:2 }}
+                    <span>kWh</span>
+                {% else %}
+                    —
+                {% endif %}
+            </div>
+        </div>
+
+    </section>
+
+    <section class="chart-card">
+
+    <div class="chart-heading">
+        <div>
+            <h2>⚡ Monthly Consumption Trend</h2>
+
+            <p>
+                Average predicted electricity consumption
+                by month.
+            </p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="consumptionTrendChart"></canvas>
+    </div>
+
+</section>
+
+<section class="chart-card">
+
+    <div class="chart-heading">
+        <div>
+            <h2>💰 Monthly Estimated Bill Trend</h2>
+
+            <p>
+                Average estimated electricity bill by month.
+            </p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="billTrendChart"></canvas>
+    </div>
+
+</section>
+
+<section class="chart-card">
+
+    <div class="chart-heading">
+        <div>
+            <h2>📊 Consumption vs Estimated Bill</h2>
+            <p>
+                Compare your average monthly electricity consumption
+                with the estimated electricity bill.
+            </p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="consumptionBillChart"></canvas>
+    </div>
+
+</section>
+
+<section class="chart-card">
+
+    <div class="chart-heading">
+        <div>
+            <h2>🔋 Consumption Level Distribution</h2>
+            <p>
+                Distribution of your predictions across
+                Low, Moderate and High consumption levels.
+            </p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="consumptionLevelChart"></canvas>
+    </div>
+
+</section>
+
+<!-- Key Energy Insight -->
+<section class="insight-card">
+
+    <div class="insight-icon">
+        💡
+    </div>
+
+    <div class="insight-content">
+
+        <div class="insight-label">
+            KEY ENERGY INSIGHT
+        </div>
+
+        <h2 class="
+    {% if energy_trend == 'above' %}
+        trend-above
+    {% elif energy_trend == 'below' %}
+        trend-below
+    {% elif energy_trend == 'equal' %}
+        trend-equal
+    {% endif %}
+">
+    {% if energy_trend == "above" %}
+        ↑ Above Average
+    {% elif energy_trend == "below" %}
+        ↓ Below Average
+    {% elif energy_trend == "equal" %}
+        → At Average
+    {% else %}
+        Your Energy Trend
+    {% endif %}
+        </h2>
+
+        {% if energy_insight %}
+            <p>{{ energy_insight }}</p>
+        {% else %}
+            <p>
+                Make a few electricity predictions to generate
+                personalized energy insights.
+            </p>
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- Peak and Lowest Usage -->
+<section class="usage-insight-card">
+
+    <div class="chart-heading">
+        <div>
+            <h2>📈 Usage Highlights</h2>
+            <p>
+                Your highest and lowest average predicted
+                consumption across the available months.
+            </p>
+        </div>
+    </div>
+
+    {% if peak_usage_month and lowest_usage_month %}
+
+    <div class="usage-highlight-grid">
+
+        <!-- Peak Usage -->
+        <div class="usage-highlight peak">
+
+            <div class="usage-highlight-icon">
+                🔥
+            </div>
+
+            <div class="usage-highlight-content">
+
+                <span>PEAK USAGE</span>
+
+                <strong>
+                    {{ peak_usage_month.month }}
+                </strong>
+
+                <p>
+                    {{ peak_usage_month.average_consumption|floatformat:2 }}
+                    kWh average consumption
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Lowest Usage -->
+        <div class="usage-highlight lowest">
+
+            <div class="usage-highlight-icon">
+                🌱
+            </div>
+
+            <div class="usage-highlight-content">
+
+                <span>LOWEST USAGE</span>
+
+                <strong>
+                    {{ lowest_usage_month.month }}
+                </strong>
+
+                <p>
+                    {{ lowest_usage_month.average_consumption|floatformat:2 }}
+                    kWh average consumption
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="no-predictions">
+        Make predictions across different months to see
+        your usage highlights.
+    </div>
+
+    {% endif %}
+
+</section>
+
+<!-- Recent Predictions -->
+<section class="recent-card">
+
+    <div class="chart-heading">
+        <div>
+            <h2>🕒 Recent Predictions</h2>
+            <p>Your five most recent electricity predictions.</p>
+        </div>
+    </div>
+
+    {% if recent_predictions %}
+
+    <div class="recent-table-wrapper">
+
+        <table class="recent-table">
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Month</th>
+                    <th>Consumption</th>
+                    <th>Estimated Bill</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for prediction in recent_predictions %}
+
+                <tr>
+
+                    <td>
+                        {{ prediction.created_at|date:"d M Y" }}
+                    </td>
+
+                    <td>
+                        {{ prediction.month }}
+                    </td>
+
+                    <td>
+                        {{ prediction.predicted_consumption_kwh|floatformat:2 }}
+                        kWh
+                    </td>
+
+                    <td>
+                        ₹{{ prediction.predicted_bill|floatformat:2 }}
+                    </td>
+
+                    <td>
+                        <a
+                            href="{% url 'prediction_details' prediction.id %}"
+                            class="recent-view-btn"
+                        >
+                            View
+                        </a>
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="no-predictions">
+        No prediction history available yet.
+    </div>
+
+    {% endif %}
+
+</section>
+
+    <div class="recent-history-action">
+        <a href="{% url 'prediction_history' %}">
+            📋 View Full Prediction History
+        </a>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{ monthly_consumption|json_script:"monthlyConsumptionData" }}
+{{ monthly_bill|json_script:"monthlyBillData" }}
+
+{{ low_consumption|json_script:"lowConsumptionData" }}
+{{ moderate_consumption|json_script:"moderateConsumptionData" }}
+{{ high_consumption|json_script:"highConsumptionData" }}
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const dataElement =
+            document.getElementById(
+                "monthlyConsumptionData"
+            );
+
+        if (!dataElement) {
+            return;
+        }
+
+        const monthlyData =
+            JSON.parse(
+                dataElement.textContent
+            );
+
+        const labels =
+            monthlyData.map(
+                item => item.month
+            );
+
+        const values =
+            monthlyData.map(
+                item =>
+                    Number(
+                        item.average_consumption || 0
+                    )
+            );
+
+        const canvas =
+            document.getElementById(
+                "consumptionTrendChart"
+            );
+
+        if (!canvas) {
+            return;
+        }
+
+        new Chart(
+            canvas,
+            {
+                type: "line",
+
+                data: {
+
+                    labels: labels,
+
+                    datasets: [
+                        {
+                            label:
+                                "Average Consumption (kWh)",
+
+                            data: values,
+
+                            tension: 0.35,
+
+                            borderWidth: 3,
+
+                            pointRadius: 5,
+
+                            pointHoverRadius: 7,
+
+                            fill: false
+                        }
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+                            labels: {
+                                color: "#dbeafe"
+                            }
+                        }
+                    },
+
+                    scales: {
+
+                        x: {
+                            ticks: {
+                                color: "#9fb1bd"
+                            },
+
+                            grid: {
+                                color:
+                                    "rgba(125,211,252,0.08)"
+                            }
+                        },
+
+                        y: {
+
+                            beginAtZero: true,
+
+                            ticks: {
+                                color: "#9fb1bd"
+                            },
+
+                            grid: {
+                                color:
+                                    "rgba(125,211,252,0.08)"
+                            }
+                        }
+                    }
+                }
+            }
+        );
+
+    }
+);
+const billDataElement =
+            document.getElementById(
+                "monthlyBillData"
+            );
+
+        if (billDataElement) {
+
+            const billData =
+                JSON.parse(
+                    billDataElement.textContent
+                );
+
+            const billLabels =
+                billData.map(
+                    item => item.month
+                );
+
+            const billValues =
+                billData.map(
+                    item =>
+                        Number(
+                            item.average_bill || 0
+                        )
+                );
+
+            const billCanvas =
+                document.getElementById(
+                    "billTrendChart"
+                );
+
+            if (billCanvas) {
+
+                new Chart(
+                    billCanvas,
+                    {
+                        type: "bar",
+
+                        data: {
+                            labels: billLabels,
+
+                            datasets: [
+                                {
+                                    label:
+                                        "Average Estimated Bill (₹)",
+
+                                    data: billValues,
+
+                                    borderWidth: 1,
+
+                                    borderRadius: 8
+                                }
+                            ]
+                        },
+
+                        options: {
+
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        color: "#dbeafe"
+                                    }
+                                }
+                            },
+
+                            scales: {
+
+                                x: {
+                                    ticks: {
+                                        color: "#9fb1bd"
+                                    },
+
+                                    grid: {
+                                        color:
+                                            "rgba(125,211,252,0.08)"
+                                    }
+                                },
+
+                                y: {
+
+                                    beginAtZero: true,
+
+                                    ticks: {
+                                        color: "#9fb1bd"
+                                    },
+
+                                    grid: {
+                                        color:
+                                            "rgba(125,211,252,0.08)"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                );
+            }
+        }
+
+const comparisonCanvas =
+            document.getElementById(
+                "consumptionBillChart"
+            );
+
+        if (comparisonCanvas) {
+
+            const consumptionData =
+                JSON.parse(
+                    document.getElementById(
+                        "monthlyConsumptionData"
+                    ).textContent
+                );
+
+            const billData =
+                JSON.parse(
+                    document.getElementById(
+                        "monthlyBillData"
+                    ).textContent
+                );
+
+            const comparisonLabels =
+                consumptionData.map(
+                    item => item.month
+                );
+
+            const consumptionValues =
+                consumptionData.map(
+                    item =>
+                        Number(
+                            item.average_consumption || 0
+                        )
+                );
+
+            const billValues =
+                billData.map(
+                    item =>
+                        Number(
+                            item.average_bill || 0
+                        )
+                );
+
+            new Chart(
+                comparisonCanvas,
+                {
+                    type: "line",
+
+                    data: {
+
+                        labels:
+                            comparisonLabels,
+
+                        datasets: [
+
+                            {
+                                label:
+                                    "Consumption (kWh)",
+
+                                data:
+                                    consumptionValues,
+
+                                tension: 0.35,
+
+                                borderWidth: 3,
+
+                                pointRadius: 5,
+
+                                pointHoverRadius: 7,
+
+                                yAxisID: "y"
+                            },
+
+                            {
+                                label:
+                                    "Estimated Bill (₹)",
+
+                                data:
+                                    billValues,
+
+                                tension: 0.35,
+
+                                borderWidth: 3,
+
+                                pointRadius: 5,
+
+                                pointHoverRadius: 7,
+
+                                yAxisID: "y1"
+                            }
+
+                        ]
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+                                labels: {
+                                    color: "#dbeafe"
+                                }
+                            }
+
+                        },
+
+                        scales: {
+
+                            x: {
+                                ticks: {
+                                    color: "#9fb1bd"
+                                },
+
+                                grid: {
+                                    color:
+                                        "rgba(125,211,252,0.08)"
+                                }
+                            },
+
+                            y: {
+
+                                beginAtZero: true,
+
+                                position: "left",
+
+                                title: {
+                                    display: true,
+                                    text:
+                                        "Consumption (kWh)",
+                                    color: "#9fb1bd"
+                                },
+
+                                ticks: {
+                                    color: "#9fb1bd"
+                                },
+
+                                grid: {
+                                    color:
+                                        "rgba(125,211,252,0.08)"
+                                }
+                            },
+
+                            y1: {
+
+                                beginAtZero: true,
+
+                                position: "right",
+
+                                title: {
+                                    display: true,
+                                    text:
+                                        "Estimated Bill (₹)",
+                                    color: "#9fb1bd"
+                                },
+
+                                ticks: {
+                                    color: "#9fb1bd"
+                                },
+
+                                grid: {
+                                    drawOnChartArea: false
+                                }
+                            }
+
+                        }
+                    }
+                }
+            );
+        }
+
+ // -----------------------------------------
+        // Consumption Level Distribution
+        // -----------------------------------------
+
+        const levelCanvas =
+            document.getElementById(
+                "consumptionLevelChart"
+            );
+
+        if (levelCanvas) {
+
+            const lowCount =
+                JSON.parse(
+                    document.getElementById(
+                        "lowConsumptionData"
+                    ).textContent
+                );
+
+            const moderateCount =
+                JSON.parse(
+                    document.getElementById(
+                        "moderateConsumptionData"
+                    ).textContent
+                );
+
+            const highCount =
+                JSON.parse(
+                    document.getElementById(
+                        "highConsumptionData"
+                    ).textContent
+                );
+
+            new Chart(
+                levelCanvas,
+                {
+                    type: "doughnut",
+
+                    data: {
+                        labels: [
+                            "Low",
+                            "Moderate",
+                            "High"
+                        ],
+
+                        datasets: [
+                            {
+                                data: [
+                                    lowCount,
+                                    moderateCount,
+                                    highCount
+                                ],
+
+                                backgroundColor: [
+                                    "#34d399",
+                                    "#fbbf24",
+                                    "#fb7185"
+                                ],
+
+                                borderColor: "#07121e",
+                                borderWidth: 3,
+
+                                hoverOffset: 8
+                            }
+                        ]
+                    },
+
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        cutout: "62%",
+
+                        plugins: {
+                            legend: {
+                                position: "bottom",
+
+                                labels: {
+                                    color: "#dbeafe",
+                                    padding: 18,
+                                    usePointStyle: true
+                                }
+                            }
+                        }
+                    }
+                }
+            );
+        }
+
+
+</script>
+
+</body>
+</html>

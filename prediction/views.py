@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import Avg, Max, Count
+from django.core.paginator import Paginator
 
 from .forms import HouseholdPredictionForm, UserRegistrationForm
 from .prediction_service import predict_household_bill
@@ -85,10 +86,15 @@ def register_view(request):
     )
 
 def logout_view(request):
+    was_admin = request.user.is_staff
 
     logout(request)
 
-    return redirect("/login/")
+    if was_admin:
+        return redirect("admin_login")
+
+    return redirect("login")
+
 
 def login_view(request):
 
@@ -107,7 +113,7 @@ def login_view(request):
 
             login(request, user)
 
-            return redirect("/prediction/")
+            return redirect("user_dashboard")
 
         else:
 
@@ -120,6 +126,268 @@ def login_view(request):
         request,
         "prediction/login.html"
     )
+
+@login_required
+@never_cache
+def user_dashboard(request):
+
+    latest_prediction = (
+        PredictionRecord.objects
+        .filter(username=request.user.username)
+        .order_by("-created_at")
+        .first()
+    )
+
+    total_predictions = (
+        PredictionRecord.objects
+        .filter(username=request.user.username)
+        .count()
+    )
+
+    consumption_level = None
+
+    if latest_prediction:
+
+        consumption = float(
+            latest_prediction.predicted_consumption_kwh
+        )
+
+        if consumption < 300:
+            consumption_level = "Low"
+
+        elif consumption <= 600:
+            consumption_level = "Moderate"
+
+        else:
+            consumption_level = "High"
+
+    top_energy_factors = []
+    recommendations = []
+
+    if latest_prediction:
+
+        input_data = {
+            "AC_Count": latest_prediction.ac_count,
+            "Daily_AC_Hours": latest_prediction.daily_ac_hours,
+
+            "Geyser": latest_prediction.geyser,
+            "Daily_Geyser_Hours": latest_prediction.daily_geyser_hours,
+
+            "Fan_Count": latest_prediction.fan_count,
+            "Daily_Fan_Hours": latest_prediction.daily_fan_hours,
+
+            "Television_Count": latest_prediction.television_count,
+            "Daily_TV_Hours": latest_prediction.daily_tv_hours,
+
+            "Washing_Machine": latest_prediction.washing_machine,
+            "Daily_Washing_Machine_Hours":
+                latest_prediction.daily_washing_machine_hours,
+
+            "Water_Pump": latest_prediction.water_pump,
+
+            "Computer_Count":
+                latest_prediction.computer_count,
+
+            "Occupancy_Hours":
+                latest_prediction.occupancy_hours,
+        }
+
+        top_energy_factors = get_top_energy_factors(
+            input_data
+        )
+
+        recommendations = generate_recommendations(
+            input_data,
+            latest_prediction.predicted_consumption_kwh,
+            latest_prediction.predicted_bill
+        )
+
+
+    return render(
+        request,
+        "prediction/user_dashboard.html",
+        {
+            "latest_prediction": latest_prediction,
+            "total_predictions": total_predictions,
+            "consumption_level": consumption_level,
+            "top_energy_factors": top_energy_factors,
+            "recommendations": recommendations,
+        }
+    )
+
+@login_required
+@never_cache
+def user_analytics(request):
+
+    user_predictions = (
+        PredictionRecord.objects
+        .filter(username=request.user.username)
+        .order_by("-created_at")
+    )
+
+    recent_predictions = user_predictions[:5]
+
+    total_predictions = user_predictions.count()
+
+    average_consumption = (
+        user_predictions.aggregate(
+            Avg("predicted_consumption_kwh")
+        )["predicted_consumption_kwh__avg"]
+    )
+
+    average_bill = (
+        user_predictions.aggregate(
+            Avg("predicted_bill")
+        )["predicted_bill__avg"]
+    )
+
+    highest_consumption = (
+        user_predictions.aggregate(
+            Max("predicted_consumption_kwh")
+        )["predicted_consumption_kwh__max"]
+    )
+
+    # -----------------------------------------
+    # Latest Energy Insight
+    # -----------------------------------------
+
+    latest_prediction = user_predictions.first()
+
+    energy_insight = None
+
+    energy_trend = None
+
+    if latest_prediction and average_consumption:
+
+        latest_consumption = float(
+            latest_prediction.predicted_consumption_kwh
+        )
+
+        average_value = float(
+            average_consumption
+        )
+
+        if latest_consumption > average_value:
+            energy_trend = "above"
+
+            energy_insight = (
+                f"Your latest predicted consumption is "
+                f"{latest_consumption:.2f} kWh, which is above "
+                f"your average consumption of "
+                f"{average_value:.2f} kWh."
+            )
+
+        elif latest_consumption < average_value:
+            energy_trend = "below"
+
+            energy_insight = (
+                f"Your latest predicted consumption is "
+                f"{latest_consumption:.2f} kWh, which is below "
+                f"your average consumption of "
+                f"{average_value:.2f} kWh."
+            )
+
+        else:
+            energy_trend = "equal"
+
+            energy_insight = (
+                f"Your latest predicted consumption is "
+                f"{latest_consumption:.2f} kWh, which is equal "
+                f"to your average consumption."
+            )
+
+    # -----------------------------------------
+    # Consumption Level Distribution
+    # -----------------------------------------
+
+    low_consumption = user_predictions.filter(
+        predicted_consumption_kwh__lt=300
+    ).count()
+
+    moderate_consumption = user_predictions.filter(
+        predicted_consumption_kwh__gte=300,
+        predicted_consumption_kwh__lte=600
+    ).count()
+
+    high_consumption = user_predictions.filter(
+        predicted_consumption_kwh__gt=600
+    ).count()
+
+
+
+    monthly_consumption = (
+        user_predictions
+        .values(
+            "month_number",
+            "month"
+        )
+        .annotate(
+            average_consumption=Avg(
+                "predicted_consumption_kwh"
+            )
+        )
+        .order_by("month_number")
+    )
+
+    # -----------------------------------------
+    # Peak and Lowest Usage Months
+    # -----------------------------------------
+
+    peak_usage_month = None
+    lowest_usage_month = None
+
+    if monthly_consumption:
+
+        peak_usage_month = max(
+            monthly_consumption,
+            key=lambda item: item["average_consumption"]
+        )
+
+        lowest_usage_month = min(
+            monthly_consumption,
+            key=lambda item: item["average_consumption"]
+        )
+
+    monthly_bill = (
+            user_predictions
+            .values(
+                "month_number",
+                "month"
+            )
+            .annotate(
+                average_bill=Avg(
+                    "predicted_bill"
+                )
+            )
+            .order_by("month_number")
+        )
+
+    return render(
+        request,
+        "prediction/user_analytics.html",
+        {
+            "total_predictions": total_predictions,
+            "average_consumption": average_consumption,
+            "average_bill": average_bill,
+            "highest_consumption": highest_consumption,
+
+            "energy_insight":energy_insight,
+            "energy_trend" : energy_trend,
+
+            "recent_predictions":recent_predictions,
+
+            "low_consumption": low_consumption,
+            "moderate_consumption": moderate_consumption,
+            "high_consumption": high_consumption,
+
+            "monthly_consumption": list(monthly_consumption),
+            "monthly_bill":list(monthly_bill),
+
+            "peak_usage_month": peak_usage_month,
+            "lowest_usage_month": lowest_usage_month,
+        }
+    )
+
 
 @ login_required 
 @never_cache
@@ -393,22 +661,47 @@ def admin_dashboard(request):
     # 7. Registered users
     # -----------------------------------------
 
-    registered_users = (
-        User.objects
-        .select_related("profile")
-        .order_by("-date_joined")
-    )
+    registered_search = request.GET.get("user_search", "").strip()
+
+    registered_users = User.objects.select_related("profile")
+
+    if registered_search:
+        registered_users = registered_users.filter(
+            username__icontains=registered_search
+        )
+
+    registered_users = registered_users.order_by("-date_joined")
 
 
     # -----------------------------------------
     # 8. Prediction records
     # -----------------------------------------
 
-    prediction_records = (
-        PredictionRecord.objects
-        .order_by("-created_at")
+    search_query = request.GET.get("search", "").strip()
+
+    prediction_records = PredictionRecord.objects.all()
+
+    if search_query:
+        prediction_records = prediction_records.filter(
+            username__icontains=search_query
+        )
+
+    prediction_records = prediction_records.order_by("-created_at")
+
+    # -----------------------------------------
+    # Pagination
+    # -----------------------------------------
+
+    paginator = Paginator(
+        prediction_records,
+        10
     )
 
+    page_number = request.GET.get("page")
+
+    prediction_records = paginator.get_page(
+        page_number
+    )
 
     # -----------------------------------------
     # 9. Prediction activity by month
@@ -466,6 +759,52 @@ def admin_dashboard(request):
         .order_by("month_number")
     )
 
+    # =========================================================
+    # ADVANCED ADMIN ANALYTICS
+    # =========================================================
+
+    # Top users by average predicted consumption
+    top_users_consumption = list(
+        PredictionRecord.objects
+        .values("username")
+        .annotate(
+            average_consumption=Avg(
+                "predicted_consumption_kwh"
+            )
+        )
+        .order_by("-average_consumption")[:5]
+    )
+
+    # Consumption level distribution
+    low_consumption_count = PredictionRecord.objects.filter(
+        predicted_consumption_kwh__lt=300
+    ).count()
+
+    moderate_consumption_count = PredictionRecord.objects.filter(
+        predicted_consumption_kwh__gte=300,
+        predicted_consumption_kwh__lte=600
+    ).count()
+
+    high_consumption_count = PredictionRecord.objects.filter(
+        predicted_consumption_kwh__gt=600
+    ).count()
+
+    consumption_level_distribution = [
+        {
+            "level": "Low",
+            "count": low_consumption_count,
+        },
+        {
+            "level": "Moderate",
+            "count": moderate_consumption_count,
+        },
+        {
+            "level": "High",
+            "count": high_consumption_count,
+        },
+    ]
+
+
 
         # -----------------------------------------
         # 10. Dashboard context
@@ -495,6 +834,10 @@ def admin_dashboard(request):
 
         "monthly_analytics":list(monthly_analytics),
 
+        "top_users_consumption": top_users_consumption,
+
+        "consumption_level_distribution": consumption_level_distribution,
+
     }
 
 
@@ -509,22 +852,158 @@ def admin_dashboard(request):
     )
 
 @login_required
-def prediction_details(request, prediction_id):
+def user_details(request, user_id):
 
     if not request.user.is_staff:
-        return redirect("/login/")
+        return redirect("user_dashboard")
+
+    selected_user = User.objects.select_related("profile").get(
+        id=user_id
+    )
+
+    if request.method == "POST":
+        photo = request.FILES.get("photo")
+
+        if photo:
+            selected_user.profile.photo = photo
+            selected_user.profile.save()
+
+            messages.success(
+                request,
+                "Profile photo updated successfully."
+            )
+
+        return redirect(
+            "user_details",
+            user_id=selected_user.id
+        )
+
+    user_predictions = PredictionRecord.objects.filter(
+        username=selected_user.username
+    ).order_by("-created_at")
+
+    # -----------------------------------------
+    # Prediction Summary
+    # -----------------------------------------
+
+    prediction_summary = user_predictions.aggregate(
+        total_predictions=Count("id"),
+        average_consumption=Avg("predicted_consumption_kwh"),
+        average_bill=Avg("predicted_bill"),
+        highest_consumption=Max("predicted_consumption_kwh"),
+    )
+
+    latest_prediction = user_predictions.first()
+
+    return render(
+        request,
+        "prediction/user_details.html",
+        {
+            "selected_user": selected_user,
+            "user_predictions": user_predictions,
+            "prediction_summary": prediction_summary,
+            "latest_prediction": latest_prediction,
+        }
+    )
+
+
+@login_required
+def prediction_details(request, prediction_id):
 
     prediction = PredictionRecord.objects.get(
         id=prediction_id
     )
 
+    # Admin can view any prediction.
+    # Normal users can view only their own prediction.
+    if not request.user.is_staff:
+        if prediction.username != request.user.username:
+            return redirect("user_dashboard")
+
+    selected_user = None
+
+    if request.user.is_staff:
+        selected_user = User.objects.select_related("profile").get(
+            username=prediction.username
+        )
+
     return render(
         request,
         "prediction/prediction_details.html",
         {
-            "prediction": prediction
+            "prediction": prediction,
+            "selected_user": selected_user,
         }
     )
+
+@login_required
+def admin_download_prediction_report(request, prediction_id):
+
+    if not request.user.is_staff:
+        return redirect("user_dashboard")
+
+    prediction = PredictionRecord.objects.get(
+        id=prediction_id
+    )
+
+    consumption = float(
+        prediction.predicted_consumption_kwh
+    )
+
+    if consumption < 300:
+        consumption_level = "Low"
+    elif consumption <= 600:
+        consumption_level = "Moderate"
+    else:
+        consumption_level = "High"
+
+    input_data = {
+        "AC_Count": prediction.ac_count,
+        "Daily_AC_Hours": prediction.daily_ac_hours,
+        "Geyser": prediction.geyser,
+        "Daily_Geyser_Hours": prediction.daily_geyser_hours,
+        "Fan_Count": prediction.fan_count,
+        "Daily_Fan_Hours": prediction.daily_fan_hours,
+        "Television_Count": prediction.television_count,
+        "Daily_TV_Hours": prediction.daily_tv_hours,
+        "Washing_Machine": prediction.washing_machine,
+        "Daily_Washing_Machine_Hours": prediction.daily_washing_machine_hours,
+        "Water_Pump": prediction.water_pump,
+        "Computer_Count": prediction.computer_count,
+        "Occupancy_Hours": prediction.occupancy_hours,
+    }
+
+    top_energy_factors = get_top_energy_factors(
+        input_data
+    )
+
+    recommendations = generate_recommendations(
+        input_data,
+        prediction.predicted_consumption_kwh,
+        prediction.predicted_bill
+    )
+
+    response = HttpResponse(
+        content_type="application/pdf"
+    )
+
+    response["Content-Disposition"] = (
+        f'attachment; filename="prediction_{prediction.id}_report.pdf"'
+    )
+
+    generate_prediction_report(
+        response=response,
+        username=prediction.username,
+        month=prediction.month,
+        prediction=prediction.predicted_consumption_kwh,
+        estimated_bill=prediction.predicted_bill,
+        consumption_level=consumption_level,
+        top_energy_factors=top_energy_factors,
+        recommendations=recommendations,
+        prediction_id=prediction.id,
+    )
+
+    return response
 
 @login_required
 def prediction_history(request):
@@ -540,6 +1019,41 @@ def prediction_history(request):
             "predictions": predictions
         }
     )
+
+@login_required
+def admin_user_prediction_history(request, user_id):
+
+    if not request.user.is_staff:
+        return redirect("user_dashboard")
+
+    selected_user = User.objects.select_related("profile").get(
+        id=user_id
+    )
+
+    predictions = PredictionRecord.objects.filter(
+        username=selected_user.username
+    ).order_by("-created_at")
+
+    paginator = Paginator(
+        predictions,
+        10
+    )
+
+    page_number = request.GET.get("page")
+
+    predictions = paginator.get_page(
+        page_number
+    )
+
+    return render(
+        request,
+        "prediction/admin_user_prediction_history.html",
+        {
+            "selected_user": selected_user,
+            "predictions": predictions,
+        }
+    )
+
 
 def download_prediction_report(request):
 

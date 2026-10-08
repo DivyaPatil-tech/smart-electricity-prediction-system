@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,227 +20,75 @@
         }
 
         body {
+
+            font-family: Arial, sans-serif;
+
             min-height: 100vh;
 
-            font-family: Arial, Helvetica, sans-serif;
+            background:
+                linear-gradient(
+                    rgba(10, 20, 45, 0.80),
+                    rgba(10, 20, 45, 0.80)
+                ),
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+
+            background-position: center;
 
             display: flex;
-            align-items: center;
+
             justify-content: center;
 
-            padding: 20px;
+            align-items: center;
 
             color: white;
-
-            background:
-                radial-gradient(
-                    circle at top right,
-                    rgba(0, 180, 255, 0.18),
-                    transparent 35%
-                ),
-                #07121e;
         }
 
         .login-container {
-            width: 100%;
-            max-width: 430px;
 
-            padding: 40px;
+            width: 420px;
 
-            background: rgba(255, 255, 255, 0.06);
+            max-width: 90%;
 
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
 
             border-radius: 20px;
 
+            padding: 40px;
+
             box-shadow:
-                0 25px 60px rgba(0, 0, 0, 0.45);
+                0 20px 50px rgba(0, 0, 0, 0.35);
         }
 
-        .icon {
+        .logo {
+
             text-align: center;
 
-            font-size: 45px;
+            font-size: 32px;
 
-            margin-bottom: 15px;
-        }
+            font-weight: bold;
 
-        h1 {
-            text-align: center;
-
-            font-size: 28px;
-
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .subtitle {
+
             text-align: center;
 
-            color: #aebdca;
-
-            font-size: 14px;
-
-            line-height: 1.5;
+            color: #d9e5ff;
 
             margin-bottom: 30px;
         }
 
-        label {
-            display: block;
-
-            margin-bottom: 7px;
-
-            font-size: 14px;
-
-            color: #dbe7ef;
-        }
-
-        input {
-            width: 100%;
-
-            padding: 13px 14px;
-
-            margin-bottom: 20px;
-
-            border-radius: 9px;
-
-            border: 1px solid rgba(255, 255, 255, 0.15);
-
-            background: rgba(255, 255, 255, 0.07);
-
-            color: white;
-
-            outline: none;
-
-            font-size: 15px;
-        }
-
-        input:focus {
-            border-color: rgba(0, 180, 255, 0.6);
-        }
-
-        .password-container {
-            position: relative;
-        }
-
-        .password-container input {
-            padding-right: 75px;
-        }
-
-        .show-password {
-            position: absolute;
-
-            right: 10px;
-
-            top: 10px;
-
-            padding: 7px 9px;
-
-            border: none;
-
-            border-radius: 6px;
-
-            background: rgba(255, 255, 255, 0.08);
-
-            color: #dbe7ef;
-
-            cursor: pointer;
-
-            font-size: 12px;
-        }
-
-        .show-password:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .login-button {
-            width: 100%;
-
-            padding: 14px;
-
-            border: none;
-
-            border-radius: 9px;
-
-            background: #1687c9;
-
-            color: white;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-        .login-button:hover {
-            transform: translateY(-2px);
-
-            background: #126fa5;
-        }
-
-        .error-message {
-            padding: 10px 12px;
-
-            margin-bottom: 20px;
-
-            border-radius: 8px;
-
-            background: rgba(220, 60, 60, 0.15);
-
-            border: 1px solid rgba(220, 60, 60, 0.3);
-
-            color: #ffb5b5;
-
-            font-size: 13px;
-
-            text-align: center;
-        }
-
-        .back-home {
-            display: block;
-
-            margin-top: 22px;
-
-            text-align: center;
-
-            color: #aebdca;
-
-            text-decoration: none;
-
-            font-size: 13px;
-        }
-
-        .back-home:hover {
-            color: white;
-        }
-
-        .security-note {
-            margin-top: 25px;
-
-            text-align: center;
-
-            color: #748794;
-
-            font-size: 11px;
-
-            line-height: 1.5;
-        }
-
-        @media (max-width: 480px) {
-
-            .login-container {
-                padding: 30px 22px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-        }
-
     </style>
+
+    <link rel="stylesheet"
+          href="{% static 'css/smart_energy.css' %}">
 
 </head>
 
@@ -247,129 +96,199 @@
 
 <div class="login-container">
 
-    <div class="icon">
-        🛡️
+    <div class="logo">
+
+        ⚡ Smart Energy
+
     </div>
 
-    <h1>
-        Admin Login
-    </h1>
+    <div class="subtitle">
 
-    <p class="subtitle">
-        Smart Energy Analytics Administration
+        Admin Login
+
+    </div>
+
+    <h2 style="
+        text-align:center;
+        margin-bottom:10px;
+        color:white;
+    ">
+
+        Welcome Administrator!
+
+    </h2>
+
+    <p style="
+        text-align:center;
+        color:#d9e5ff;
+        font-size:14px;
+        margin-bottom:25px;
+    ">
+
+        Login to manage your electricity
+        predictions and energy analytics
+
     </p>
 
+    <!-- Django Messages -->
 
     {% if messages %}
 
         {% for message in messages %}
 
-            <div class="error-message">
+            <div style="
+                background:#ffe4e4;
+                color:#b42318;
+                padding:10px;
+                border-radius:8px;
+                margin-bottom:15px;
+                font-size:14px;
+                text-align:center;
+            ">
+
                 {{ message }}
+
             </div>
 
         {% endfor %}
 
     {% endif %}
 
+    <!-- Admin Login Form -->
 
     <form method="POST">
 
         {% csrf_token %}
 
-        <label for="username">
-            Username
-        </label>
+        <div style="margin-bottom:20px;">
 
-        <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter admin username"
-            required
-        >
+            <label style="
+                display:block;
+                margin-bottom:8px;
+                font-size:14px;
+                font-weight:bold;
+            ">
 
+                🛡️ Admin Username
 
-        <label for="password">
-            Password
-        </label>
-
-        <div class="password-container">
+            </label>
 
             <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter admin password"
+                type="text"
+                name="username"
+                placeholder="Enter admin username"
                 required
+                style="
+                    width:100%;
+                    padding:13px;
+                    border:none;
+                    border-radius:9px;
+                    font-size:14px;
+                    outline:none;
+                "
             >
-
-            <button
-                type="button"
-                class="show-password"
-                onclick="togglePassword()"
-            >
-                Show
-            </button>
 
         </div>
 
+        <div style="margin-bottom:20px;">
 
-        <button
+            <label style="
+                display:block;
+                margin-bottom:8px;
+                font-size:14px;
+                font-weight:bold;
+            ">
+
+                🔒 Admin Password
+
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter admin password"
+                required
+                style="
+                    width:100%;
+                    padding:13px;
+                    border:none;
+                    border-radius:9px;
+                    font-size:14px;
+                    outline:none;
+                "
+            >
+
+        </div>
+
+        <div style="text-align:right; margin-top:-8px; margin-bottom:20px;">
+            <a href="{% url 'password_reset' %}"
+               style="color:#d9e5ff; font-size:13px; text-decoration:none;">
+                Forgot Password?
+            </a>
+        </div>
+
+
+         <button
             type="submit"
-            class="login-button"
+            style="
+                width:100%;
+                padding:14px;
+                border:none;
+                border-radius:9px;
+                background:#1687c9;
+                color:white;
+                font-size:16px;
+                font-weight:bold;
+                cursor:pointer;
+            "
         >
-            Login to Dashboard
+
+            🛡️ Login to Dashboard
+
         </button>
 
     </form>
 
+    <!-- Back to Home -->
 
-    <a
-        href="{% url 'home' %}"
-        class="back-home"
-    >
-        ← Back to Home
-    </a>
+    <div style="
+        text-align:center;
+        margin-top:15px;
+    ">
 
+        <a
+            href="{% url 'home' %}"
+            style="
+                color:#d9e5ff;
+                font-size:13px;
+                text-decoration:none;
+            "
+        >
 
-    <div class="security-note">
-        Authorized administrators only.
-        Your password is handled through Django's
-        secure authentication system.
+            ← Back to Home
+
+        </a>
+
+    </div>
+
+    <!-- Admin Security Message -->
+
+    <div style="
+        text-align:center;
+        margin-top:20px;
+        color:#d9e5ff;
+        font-size:11px;
+        line-height:1.5;
+    ">
+
+        🔒 Authorized administrators only.
+
+        Your password is handled through
+        Django's secure authentication system.
+
     </div>
 
 </div>
-
-
-<script>
-
-    function togglePassword() {
-
-        const password =
-            document.getElementById("password");
-
-        const button =
-            document.querySelector(".show-password");
-
-
-        if (password.type === "password") {
-
-            password.type = "text";
-
-            button.textContent = "Hide";
-
-        } else {
-
-            password.type = "password";
-
-            button.textContent = "Show";
-
-        }
-
-    }
-
-</script>
 
 </body>
 

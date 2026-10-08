@@ -342,6 +342,656 @@ tr:hover {
 .view-details-btn:hover {
     background: #1d4ed8;
 }
+/* =========================================================
+   SMART ENERGY ADMIN DASHBOARD THEME
+   Theme-only override
+   ========================================================= */
+
+body {
+    background: #07121e !important;
+    color: #ffffff !important;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard {
+    background: #07121e;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+    width: 235px !important;
+    background: rgba(7, 18, 30, 0.92) !important;
+    border-right: 1px solid rgba(125, 211, 252, 0.25) !important;
+    box-shadow: 8px 0 25px rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(14px);
+}
+
+.logo {
+    color: #7dd3fc !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+.menu a {
+    color: #cbd5e1 !important;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+.menu a:hover {
+    background: rgba(14, 165, 164, 0.18) !important;
+    color: #ffffff !important;
+}
+
+.menu a.active {
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 164, 0.85),
+        rgba(22, 135, 201, 0.85)
+    ) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 18px rgba(14, 165, 164, 0.20);
+}
+
+.logout {
+    color: #cbd5e1 !important;
+}
+
+.logout:hover {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #ffffff !important;
+}
+
+/* ---------- Main Area ---------- */
+
+.main {
+    margin-left: 235px !important;
+    background: #07121e !important;
+    min-height: 100vh;
+    padding: 40px !important;
+}
+
+/* ---------- Top Bar ---------- */
+
+.topbar {
+    background: rgba(255, 255, 255, 0.035) !important;
+    border: 1px solid rgba(125, 211, 252, 0.18) !important;
+    border-radius: 16px;
+    padding: 18px 22px;
+    backdrop-filter: blur(12px);
+}
+
+.topbar h1 {
+    color: #ffffff !important;
+}
+
+.admin-name {
+    color: #7dd3fc !important;
+    background: rgba(14, 165, 164, 0.12) !important;
+    border: 1px solid rgba(125, 211, 252, 0.25) !important;
+    border-radius: 10px;
+}
+
+/* ---------- Summary Cards ---------- */
+
+.stats {
+    gap: 20px !important;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.045) !important;
+    border: 1px solid rgba(125, 211, 252, 0.18) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18) !important;
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(14, 165, 164, 0.55) !important;
+    box-shadow: 0 12px 30px rgba(14, 165, 164, 0.12) !important;
+}
+
+.stat-card h3,
+.stat-card p {
+    color: #cbd5e1 !important;
+}
+
+.stat-card .number {
+    color: #7dd3fc !important;
+}
+
+/* ---------- Chart Cards ---------- */
+
+.chart-card {
+    background: rgba(255, 255, 255, 0.045) !important;
+    border: 1px solid rgba(125, 211, 252, 0.28) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(14px);
+    transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(125, 211, 252, 0.45) !important;
+    box-shadow: 0 14px 35px rgba(14, 165, 164, 0.12) !important;
+}
+
+.chart-card h2 {
+    color: #ffffff !important;
+    font-size: 19px !important;
+    font-weight: 700 !important;
+    margin-bottom: 5px !important;
+}
+
+.chart-card p,
+.chart-subtitle {
+    color: #94a3b8 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    margin-bottom: 14px !important;
+}
+
+.chart-card h2,
+.chart-card h3 {
+    color: #ffffff !important;
+}
+
+.chart-card canvas {
+    background: transparent !important;
+}
+
+/* ---------- Table Cards ---------- */
+
+.table-card {
+    background: rgba(255, 255, 255, 0.045) !important;
+    border: 1px solid rgba(125, 211, 252, 0.18) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18) !important;
+    backdrop-filter: blur(12px);
+    overflow-x: auto;
+}
+
+.table-card h2,
+.table-card h3 {
+    color: #ffffff !important;
+}
+
+table {
+    color: #e2e8f0 !important;
+}
+
+thead th {
+    background: rgba(14, 165, 164, 0.85) !important;
+    color: #ffffff !important;
+    border-color: rgba(125, 211, 252, 0.15) !important;
+}
+
+tbody td {
+    color: #cbd5e1 !important;
+    border-color: rgba(125, 211, 252, 0.10) !important;
+}
+
+tbody tr {
+    background: transparent !important;
+}
+
+tbody tr:hover {
+    background: rgba(14, 165, 164, 0.08) !important;
+}
+
+/* ---------- View Details Button ---------- */
+
+.view-details-btn {
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 164, 0.9),
+        rgba(22, 135, 201, 0.9)
+    ) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(125, 211, 252, 0.25) !important;
+    border-radius: 9px !important;
+    transition: all 0.25s ease;
+}
+
+.view-details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(14, 165, 164, 0.25);
+}
+
+/* ---------- General Text ---------- */
+
+.section-title,
+.page-title,
+.subtitle {
+    color: #ffffff !important;
+}
+
+label {
+    color: #cbd5e1 !important;
+}
+
+/* ---------- Scrollbar ---------- */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #07121e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(125, 211, 252, 0.35);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(14, 165, 164, 0.65);
+}
+
+
+/* ---------- Analytics Insights ---------- */
+
+.analytics-insights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.insight-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    background: rgba(255, 255, 255, 0.045) !important;
+    border: 1px solid rgba(125, 211, 252, 0.20) !important;
+    border-radius: 16px;
+    padding: 20px;
+
+    backdrop-filter: blur(14px);
+
+    transition: all 0.3s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(14, 165, 164, 0.50) !important;
+    box-shadow: 0 12px 30px rgba(14, 165, 164, 0.12);
+}
+
+.insight-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 164, 0.25),
+        rgba(22, 135, 201, 0.25)
+    );
+
+    border: 1px solid rgba(125, 211, 252, 0.25);
+
+    font-size: 23px;
+}
+
+.insight-card h3 {
+    color: #ffffff;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.insight-card p {
+    color: #7dd3fc;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+    .analytics-insights {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =====================================================
+   ADMIN SIDEBAR - SMART ENERGY THEME
+   ===================================================== */
+
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 235px;
+    height: 100vh;
+
+    padding: 28px 18px;
+
+    background: rgba(7, 18, 30, 0.94);
+    border-right: 1px solid rgba(125, 211, 252, 0.16);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.22);
+
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-sidebar-brand {
+    color: #7dd3fc;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    padding: 8px 10px 25px;
+
+    border-bottom: 1px solid rgba(125, 211, 252, 0.12);
+}
+
+.admin-sidebar-brand span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 0.5px;
+}
+
+.admin-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: 25px;
+}
+
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 13px;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.admin-nav-link span:first-child {
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+.admin-nav-link:hover {
+    color: #ffffff;
+
+    background: rgba(14, 165, 164, 0.15);
+
+    transform: translateX(3px);
+}
+
+.admin-nav-link.active {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 165, 164, 0.85),
+            rgba(22, 135, 201, 0.85)
+        );
+
+    box-shadow:
+        0 6px 18px rgba(14, 165, 164, 0.18);
+}
+
+.admin-sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(125, 211, 252, 0.12);
+}
+
+.logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+}
+/* =========================================
+   PAGINATION
+   ========================================= */
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.pagination-button {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 10px;
+    background: linear-gradient(
+        135deg,
+        rgba(14,165,164,.85),
+        rgba(22,135,201,.85)
+    );
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(125,211,252,.25);
+    transition: all .25s ease;
+}
+
+.pagination-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(20,165,164,.22);
+}
+
+.pagination-info {
+    color: #cbd5e1;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.prediction-records-info {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
+
+.registered-users-info {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
+
+/* =========================================
+   PREDICTION SEARCH
+   ========================================= */
+
+.prediction-search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0 18px;
+    flex-wrap: wrap;
+}
+
+.prediction-search-input {
+    width: 280px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    font-size: 13px;
+    outline: none;
+}
+
+.prediction-search-input::placeholder {
+    color: #94a3b8;
+}
+
+.prediction-search-input:focus {
+    border-color: rgba(125, 211, 252, 0.65);
+    box-shadow: 0 0 0 3px rgba(20, 165, 164, 0.12);
+}
+
+.prediction-search-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 164, 0.85),
+        rgba(22, 135, 201, 0.85)
+    );
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.prediction-clear-button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    color: #cbd5e1 !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.prediction-clear-button:hover {
+    border-color: rgba(125, 211, 252, 0.5);
+    color: #ffffff !important;
+}
+/* =========================================
+   REGISTERED USERS SEARCH
+   ========================================= */
+
+.registered-search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0 18px;
+    flex-wrap: wrap;
+}
+
+.registered-search-input {
+    width: 280px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    font-size: 13px;
+    outline: none;
+}
+
+.registered-search-input::placeholder {
+    color: #94a3b8;
+}
+
+.registered-search-input:focus {
+    border-color: rgba(125, 211, 252, 0.65);
+    box-shadow: 0 0 0 3px rgba(20, 165, 164, 0.12);
+}
+
+.registered-search-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 164, 0.85),
+        rgba(22, 135, 201, 0.85)
+    );
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.registered-clear-button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    color: #cbd5e1 !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.registered-clear-button:hover {
+    border-color: rgba(125, 211, 252, 0.5);
+    color: #ffffff !important;
+}
+
+.user-details-button {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(20, 165, 164, 0.18);
+    color: #7dd3fc;
+    text-decoration: none;
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+.user-details-button:hover {
+    background: rgba(20, 165, 164, 0.32);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
 
 </style>
 
@@ -349,37 +999,56 @@ tr:hover {
 
 <body>
 
-<div class="dashboard">
+<!-- ADMIN SIDEBAR -->
+<aside class="admin-sidebar">
 
-<aside class="sidebar">
+    <div class="admin-sidebar-brand">
+        ⚡ Smart Energy
+        <span>Admin Panel</span>
+    </div>
 
-<div class="logo">
+    <nav class="admin-sidebar-nav">
 
-<h2>⚡ Smart Energy</h2>
+        <a href="{% url 'admin_dashboard' %}" class="admin-nav-link active">
+            <span>🏠</span>
+            <span>Admin Dashboard</span>
+        </a>
 
-<p>Admin Dashboard</p>
+        <a href="#registered-users" class="admin-nav-link">
+            <span>👥</span>
+            <span>Users</span>
+        </a>
 
-</div>
+        <a href="#prediction-analytics" class="admin-nav-link">
+            <span>📊</span>
+            <span>Prediction Analytics</span>
+        </a>
 
-<ul class="menu">
+        <a href="#prediction-records" class="admin-nav-link">
+            <span>📋</span>
+            <span>Prediction Records</span>
+        </a>
 
-<li>
-<a href="#" class="active">
-📊 Dashboard
-</a>
-</li>
+        <a href="#analytics-insights" class="admin-nav-link">
+            <span>📈</span>
+            <span>Consumption Insights</span>
+        </a>
 
-</ul>
+    </nav>
 
-<div class="logout">
+    <div class="admin-sidebar-bottom">
 
-<a href="{% url 'logout' %}">
-🚪 Logout
-</a>
+        <a href="{% url 'logout' %}" class="admin-nav-link logout-link">
+            <span>🚪</span>
+            <span>Logout</span>
+        </a>
 
-</div>
+    </div>
 
 </aside>
+
+
+<div class="dashboard">
 
 <main class="main">
 
@@ -469,9 +1138,31 @@ predictions and analytics
 
 </section>
 
-<!-- GRAPHS -->
+<!-- HIGHEST CONSUMPTION -->
+<section class="stats">
 
-<section class="charts">
+    <div class="stat-card">
+
+        <h3>Highest Consumption</h3>
+
+        <div class="number">
+
+            {% if highest_consumption %}
+                {{ highest_consumption|floatformat:2 }}
+            {% else %}
+                0.00
+            {% endif %}
+
+        </div>
+
+        <p>kWh / month</p>
+
+    </div>
+
+</section>
+
+<!-- GRAPHS -->
+<section class="charts" id="prediction-analytics">
 
 
 <!-- PREDICTION ACTIVITY -->
@@ -531,17 +1222,121 @@ predictions and analytics
 
 </div>
 
+<!-- TOP USERS BY CONSUMPTION -->
+
+<div class="chart-card">
+
+    <h2>
+        👥 Top Users by Consumption
+    </h2>
+
+    <p class="chart-subtitle">
+        Top 5 Users by Average Predicted Consumption
+    </p>
+
+    <div class="chart-wrapper">
+
+        <canvas id="topUsersConsumptionChart">
+        </canvas>
+
+    </div>
+
+</div>
+
+
+<!-- CONSUMPTION LEVEL DISTRIBUTION -->
+
+<div class="chart-card">
+
+    <h2>
+        📊 Consumption Level Distribution
+    </h2>
+
+    <p class="chart-subtitle">
+        Low, Moderate and High Consumption Predictions
+    </p>
+
+    <div class="chart-wrapper">
+
+        <canvas id="consumptionLevelChart">
+        </canvas>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ANALYTICS INSIGHTS -->
+
+<section class="analytics-insights" id="analytics-insights">
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            📈
+        </div>
+
+        <div>
+            <h3>Highest Consumption Month</h3>
+            <p id="highestConsumptionMonth">
+                Calculating...
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            💰
+        </div>
+
+        <div>
+            <h3>Highest Bill Month</h3>
+            <p id="highestBillMonth">
+                Calculating...
+            </p>
+        </div>
+
+    </div>
 
 </section>
 
 <!-- REGISTERED USERS -->
 
-<section class="table-card">
+<section class="table-card" id="registered-users">
 
 <h2>
 👥 Registered Users
 </h2>
+<form method="get" class="registered-search-form">
 
+    <input
+        type="text"
+        name="user_search"
+        value="{{ request.GET.user_search|default:'' }}"
+        placeholder="Search by username..."
+        class="registered-search-input"
+    >
+
+    <button type="submit" class="registered-search-button">
+        🔍 Search
+    </button>
+
+    {% if request.GET.user_search %}
+        <a href="{% url 'admin_dashboard' %}"
+           class="registered-clear-button">
+            ✕ Clear
+        </a>
+    {% endif %}
+
+</form>
+
+<div class="registered-users-info">
+    Total registered users: {{ total_users }}
+</div>
 <div class="table-container">
 
 {% if registered_users %}
@@ -562,6 +1357,7 @@ predictions and analytics
 <th>Contact</th>
 <th>Joined</th>
 <th>Last Login</th>
+<th>Action</th>
 
 </tr>
 
@@ -644,6 +1440,12 @@ Never
 {% endif %}
 
 </td>
+<td>
+    <a href="{% url 'user_details' user.id %}"
+       class="user-details-button">
+        👁️ View Details
+    </a>
+</td>
 
 </tr>
 
@@ -670,11 +1472,39 @@ No registered users found.
 
 <!-- PREDICTION RECORDS -->
 
-<section class="table-card">
+<section class="table-card" id="prediction-records">
 
 <h2>
 ⚡ Prediction Records
 </h2>
+<form method="get" class="prediction-search-form">
+
+    <input
+        type="text"
+        name="search"
+        value="{{ request.GET.search|default:'' }}"
+        placeholder="Search by username..."
+        class="prediction-search-input"
+    >
+
+    <button type="submit" class="prediction-search-button">
+        🔍 Search
+    </button>
+
+    {% if request.GET.search %}
+        <a href="{% url 'admin_dashboard' %}"
+           class="prediction-clear-button">
+            ✕ Clear
+        </a>
+    {% endif %}
+
+</form>
+
+<div class="prediction-records-info">
+    Showing page {{ prediction_records.number }}
+    of {{ prediction_records.paginator.num_pages }}
+    • 10 records per page
+</div>
 <div class="table-container">
 {% if prediction_records %}
 <div class="table-wrapper">
@@ -737,6 +1567,36 @@ kWh
 </table>
 </div>
 
+<!-- PAGINATION -->
+
+{% if prediction_records.has_other_pages %}
+
+<div class="pagination-controls">
+
+    {% if prediction_records.has_previous %}
+        <a href="?search={{ request.GET.search|urlencode }}&page={{ prediction_records.previous_page_number }}#prediction-records"
+            class="pagination-button">
+            ← Previous
+        </a>
+    {% endif %}
+
+    <span class="pagination-info">
+        Page {{ prediction_records.number }}
+        of
+        {{ prediction_records.paginator.num_pages }}
+    </span>
+
+    {% if prediction_records.has_next %}
+        <a href="?search={{ request.GET.search|urlencode }}&page={{ prediction_records.next_page_number }}#prediction-records"
+           class="pagination-button">
+            Next →
+        </a>
+    {% endif %}
+
+</div>
+
+{% endif %}
+
 {% else %}
 
 <div class="empty-message">
@@ -757,6 +1617,9 @@ No prediction records found.
 
 {{ monthly_analytics|json_script:"monthlyAnalyticsData" }}
 
+{{ top_users_consumption|json_script:"topUsersConsumptionData" }}
+
+{{ consumption_level_distribution|json_script:"consumptionLevelDistributionData" }}
 
 <!-- GRAPH JAVASCRIPT -->
 
@@ -812,13 +1675,116 @@ document.addEventListener(
             )
         );
 
+        // =====================================================
+    // NEW ADMIN ANALYTICS DATA
+    // =====================================================
+
+    const topUsersData =
+        JSON.parse(
+            document.getElementById(
+                "topUsersConsumptionData"
+            ).textContent
+        );
+
+    const topUserLabels =
+        topUsersData.map(
+            item => item.username
+        );
+
+    const topUserValues =
+        topUsersData.map(
+            item => Number(
+                item.average_consumption || 0
+            )
+        );
+
+
+    const consumptionLevelData =
+        JSON.parse(
+            document.getElementById(
+                "consumptionLevelDistributionData"
+            ).textContent
+        );
+
+    const consumptionLevelLabels =
+        consumptionLevelData.map(
+            item => item.level
+        );
+
+    const consumptionLevelValues =
+        consumptionLevelData.map(
+            item => Number(
+                item.count || 0
+            )
+        );
+
+
+        /* =========================
+   ANALYTICS INSIGHTS
+   ========================= */
+
+if (monthlyData.length > 0) {
+
+    const highestConsumption =
+        monthlyData.reduce(
+            (max, item) =>
+                Number(item.average_consumption || 0) >
+                Number(max.average_consumption || 0)
+                    ? item
+                    : max
+        );
+
+    const highestBill =
+        monthlyData.reduce(
+            (max, item) =>
+                Number(item.average_bill || 0) >
+                Number(max.average_bill || 0)
+                    ? item
+                    : max
+        );
+
+
+    const consumptionElement =
+        document.getElementById(
+            "highestConsumptionMonth"
+        );
+
+    const billElement =
+        document.getElementById(
+            "highestBillMonth"
+        );
+
+
+    if (consumptionElement) {
+
+        consumptionElement.textContent =
+            highestConsumption.month +
+            " — " +
+            Number(
+                highestConsumption.average_consumption || 0
+            ).toFixed(2) +
+            " kWh";
+    }
+
+
+    if (billElement) {
+
+        billElement.textContent =
+            highestBill.month +
+            " — ₹" +
+            Number(
+                highestBill.average_bill || 0
+            ).toFixed(2);
+    }
+
+}
 
     drawBarChart(
         "predictionChart",
         predictionMonths,
         predictionTotals,
         "Number of Predictions",
-        "#5B7C99"
+        "#14A5A4"
     );
 
 
@@ -838,395 +1804,932 @@ document.addEventListener(
         "#6BAF92"
     );
 
+    // =====================================================
+    // TOP USERS BY CONSUMPTION
+    // =====================================================
+
+    drawHorizontalBarChart(
+        "topUsersConsumptionChart",
+        topUserLabels,
+        topUserValues,
+        "Average Consumption (kWh)"
+    );
+
+
+    // =====================================================
+    // CONSUMPTION LEVEL DISTRIBUTION
+    // =====================================================
+
+    drawDoughnutChart(
+        "consumptionLevelChart",
+        consumptionLevelLabels,
+        consumptionLevelValues
+    );
 
     function drawBarChart(
-        canvasId,
-        labels,
-        values,
+    canvasId,
+    labels,
+    values,
+    title,
+    barColor = "#14A5A4"
+) {
+
+    const canvas = document.getElementById(canvasId);
+
+    if (!canvas) {
+        return;
+    }
+
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = canvas.clientWidth * 2;
+    canvas.height = canvas.clientHeight * 2;
+
+    ctx.scale(2, 2);
+
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+
+    ctx.clearRect(0, 0, w, h);
+
+    if (values.length === 0) {
+
+        ctx.fillStyle = "#7dd3fc";
+        ctx.font = "14px Arial";
+        ctx.fillText("No data available", 20, 40);
+
+        return;
+    }
+
+    const maxValue = Math.max(...values, 1);
+
+    const left = 55;
+    const right = 20;
+    const top = 35;
+    const bottom = 55;
+
+    const graphWidth = w - left - right;
+    const graphHeight = h - top - bottom;
+
+    const barSpace = graphWidth / values.length;
+    const barWidth = barSpace * 0.55;
+
+
+    /* =========================
+       SMART ENERGY COLOURS
+       ========================= */
+
+    const gradient = ctx.createLinearGradient(
+        0,
+        top,
+        0,
+        h - bottom
+    );
+
+    gradient.addColorStop(0, "#7dd3fc");
+    gradient.addColorStop(0.45, "#14A5A4");
+    gradient.addColorStop(1, "#1687C9");
+
+
+    /* =========================
+       TITLE
+       ========================= */
+
+    ctx.fillStyle = "#7dd3fc";
+    ctx.font = "bold 14px Arial";
+    ctx.textAlign = "left";
+
+    ctx.fillText(
         title,
-        barColor="#5B7C99"
-    ) {
+        left,
+        18
+    );
 
-        const canvas =
-            document.getElementById(
-                canvasId
-            );
 
-        if (!canvas) {
-            return;
-        }
+    /* =========================
+       GRID + AXES
+       ========================= */
 
-        const ctx =
-            canvas.getContext("2d");
+    ctx.strokeStyle = "rgba(125, 211, 252, 0.16)";
+    ctx.lineWidth = 1;
 
-        canvas.width =
-            canvas.clientWidth * 2;
+    const gridLines = 5;
 
-        canvas.height =
-            canvas.clientHeight * 2;
+    for (let i = 0; i <= gridLines; i++) {
 
-        ctx.scale(2, 2);
-
-        const w =
-            canvas.clientWidth;
-
-        const h =
-            canvas.clientHeight;
-
-        ctx.clearRect(
-            0,
-            0,
-            w,
-            h
-        );
-
-        if (values.length === 0) {
-
-            ctx.fillText(
-                "No data available",
-                20,
-                40
-            );
-
-            return;
-        }
-
-        const maxValue =
-            Math.max(...values, 1);
-
-        const left = 55;
-        const right = 20;
-        const top = 25;
-        const bottom = 45;
-
-        const graphWidth =
-            w - left - right-15;
-
-        const graphHeight =
-            h - top - bottom;
-
-        const barWidth =
-            graphWidth /
-            values.length *
-            0.55;
-
+        const y =
+            top +
+            (graphHeight / gridLines) * i;
 
         ctx.beginPath();
 
         ctx.moveTo(
             left,
-            top
-        );
-
-        ctx.lineTo(
-            left,
-            h - bottom
+            y
         );
 
         ctx.lineTo(
             w - right,
-            h - bottom
+            y
         );
 
         ctx.stroke();
-
-
-        ctx.font =
-            "bold 14px Arial";
-
-        ctx.fillText(
-            title,
-            left,
-            18
-        );
-
-
-        values.forEach(
-            function(value, index) {
-
-                const x =
-                    left +
-                    (
-                        index + 0.5
-                    ) *
-                    (
-                        graphWidth /
-                        values.length
-                    ) -
-                    barWidth / 2;
-
-                const barHeight =
-                    (
-                        value /
-                        maxValue
-                    ) *
-                    graphHeight;
-
-                const y =
-                    h -
-                    bottom -
-                    barHeight;
-
-                ctx.fillStyle=barColor;
-
-                ctx.fillRect(
-                    x,
-                    y,
-                    barWidth,
-                    barHeight
-                );
-
-                ctx.font =
-                    "10px Arial";
-
-                ctx.textAlign = "center";
-
-                ctx.fillText(
-                    labels[index],
-                    x + barWidth / 2,
-                    h - bottom + 18
-                );
-
-                ctx.font = "11px Arial";
-                ctx.textAlign = "center";
-
-                ctx.fillText(
-                    "Month",
-                    left + graphWidth / 2,
-                    h - 5
-                );
-
-                ctx.fillText(
-                    Math.round(value),
-                    x,
-                    y - 5
-                );
-
-            }
-        );
-
     }
+
+
+    /* Main axes */
+
+    ctx.strokeStyle = "rgba(125, 211, 252, 0.45)";
+    ctx.lineWidth = 1;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        left,
+        top
+    );
+
+    ctx.lineTo(
+        left,
+        h - bottom
+    );
+
+    ctx.lineTo(
+        w - right,
+        h - bottom
+    );
+
+    ctx.stroke();
+
+
+    /* =========================
+       BARS
+       ========================= */
+
+    values.forEach(
+        function(value, index) {
+
+            const x =
+                left +
+                index * barSpace +
+                (barSpace - barWidth) / 2;
+
+            const barHeight =
+                (value / maxValue) *
+                graphHeight;
+
+            const y =
+                h -
+                bottom -
+                barHeight;
+
+
+            /* Bar */
+
+            ctx.fillStyle = gradient;
+
+            ctx.beginPath();
+
+            ctx.roundRect(
+                x,
+                y,
+                barWidth,
+                barHeight,
+                5
+            );
+
+            ctx.fill();
+
+
+            /* =====================
+               VALUE ABOVE BAR
+               ===================== */
+
+            ctx.fillStyle = "#7dd3fc";
+            ctx.font = "bold 11px Arial";
+            ctx.textAlign = "center";
+
+            ctx.fillText(
+                Math.round(value),
+                x + barWidth / 2,
+                y - 7
+            );
+
+
+            /* =====================
+               MONTH LABEL
+               ===================== */
+
+            ctx.fillStyle = "#cbd5e1";
+            ctx.font = "10px Arial";
+            ctx.textAlign = "center";
+
+            ctx.fillText(
+                labels[index],
+                x + barWidth / 2,
+                h - bottom + 18
+            );
+        }
+    );
+
+
+    /* =========================
+       X-AXIS TITLE
+       ========================= */
+
+    ctx.fillStyle = "#7dd3fc";
+    ctx.font = "bold 11px Arial";
+    ctx.textAlign = "center";
+
+    ctx.fillText(
+        "Month",
+        left + graphWidth / 2,
+        h - 8
+    );
+
+}
+
 function drawLineChart(
-        canvasId,
-        labels,
-        values,
-        title
-    ) {
+    canvasId,
+    labels,
+    values,
+    title
+) {
 
-        const canvas =
-            document.getElementById(
-                canvasId
-            );
+    const canvas = document.getElementById(canvasId);
 
-        if (!canvas) {
-            return;
-        }
+    if (!canvas) {
+        return;
+    }
 
-        const ctx =
-            canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
 
-        canvas.width =
-            canvas.clientWidth * 2;
+    canvas.width = canvas.clientWidth * 2;
+    canvas.height = canvas.clientHeight * 2;
 
-        canvas.height =
-            canvas.clientHeight * 2;
+    ctx.scale(2, 2);
 
-        ctx.scale(2, 2);
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
 
-        const w =
-            canvas.clientWidth;
+    ctx.clearRect(0, 0, w, h);
 
-        const h =
-            canvas.clientHeight;
+    if (values.length === 0) {
 
-        ctx.clearRect(
-            0,
-            0,
-            w,
-            h
+        ctx.fillStyle = "#7dd3fc";
+        ctx.font = "14px Arial";
+
+        ctx.fillText(
+            "No data available",
+            20,
+            40
         );
 
-        if (values.length === 0) {
+        return;
+    }
 
-            ctx.fillText(
-                "No data available",
-                20,
-                40
-            );
+    const maxValue = Math.max(...values, 1);
 
-            return;
-        }
+    const left = 55;
+    const right = 20;
+    const top = 35;
+    const bottom = 55;
 
-        const maxValue =
-            Math.max(...values, 1);
-
-        const left = 55;
-        const right = 20;
-        const top = 25;
-        const bottom = 45;
-
-        const graphWidth =
-            w - left - right;
-
-        const graphHeight =
-            h - top - bottom;
+    const graphWidth = w - left - right;
+    const graphHeight = h - top - bottom;
 
 
-        /* AXIS */
+    /* =========================
+       TITLE
+       ========================= */
+
+    ctx.fillStyle = "#7dd3fc";
+    ctx.font = "bold 14px Arial";
+    ctx.textAlign = "left";
+
+    ctx.fillText(
+        title,
+        left,
+        18
+    );
+
+
+    /* =========================
+       GRID
+       ========================= */
+
+    ctx.strokeStyle = "rgba(125, 211, 252, 0.16)";
+    ctx.lineWidth = 1;
+
+    const gridLines = 5;
+
+    for (let i = 0; i <= gridLines; i++) {
+
+        const y =
+            top +
+            (graphHeight / gridLines) * i;
 
         ctx.beginPath();
 
         ctx.moveTo(
             left,
-            top
-        );
-
-        ctx.lineTo(
-            left,
-            h - bottom
+            y
         );
 
         ctx.lineTo(
             w - right,
-            h - bottom
+            y
         );
 
         ctx.stroke();
-
-
-        /* TITLE */
-
-        ctx.font =
-            "bold 14px Arial";
-
-        ctx.fillText(
-            title,
-            left,
-            18
-        );
-
-
-        /* LINE */
-
-        ctx.beginPath();
-
-        ctx.strokeStyle="#5F8D7E";
-
-        values.forEach(
-            function(value, index) {
-
-                const x =
-                    left +
-                    (
-                        index /
-                        Math.max(
-                            values.length - 1,
-                            1
-                        )
-                    ) *
-                    graphWidth;
-
-                const y =
-                    h -
-                    bottom -
-                    (
-                        value /
-                        maxValue
-                    ) *
-                    graphHeight;
-
-                if (index === 0) {
-
-                    ctx.moveTo(
-                        x,
-                        y
-                    );
-
-                } else {
-
-                    ctx.lineTo(
-                        x,
-                        y
-                    );
-
-                }
-
-            }
-        );
-
-        ctx.stroke();
-
-
-        /* POINTS */
-
-        values.forEach(
-            function(value, index) {
-
-                const x =
-                    left +
-                    (
-                        index /
-                        Math.max(
-                            values.length - 1,
-                            1
-                        )
-                    ) *
-                    graphWidth;
-
-                const y =
-                    h -
-                    bottom -
-                    (
-                        value /
-                        maxValue
-                    ) *
-                    graphHeight;
-
-
-                ctx.beginPath();
-
-                ctx.arc(
-                    x,
-                    y,
-                    4,
-                    0,
-                    Math.PI * 2
-                );
-
-                ctx.fill();
-
-
-                ctx.font =
-                    "10px Arial";
-
-                ctx.fillText(
-                    Math.round(value),
-                    x - 10,
-                    y - 8
-                );
-
-                ctx.textAlign = "center";
-
-                ctx.fillText(
-                    labels[index],
-                    x-8,
-                    h - bottom + 18
-                );
-
-                ctx.font = "11px Arial";
-                ctx.textAlign = "center";
-
-                ctx.fillText(
-                    "Month",
-                    left + graphWidth / 2,
-                    h - 5
-                );
-
-            }
-        );
-
     }
 
+
+    /* =========================
+       AXES
+       ========================= */
+
+    ctx.strokeStyle = "rgba(125, 211, 252, 0.45)";
+    ctx.lineWidth = 1;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        left,
+        top
+    );
+
+    ctx.lineTo(
+        left,
+        h - bottom
+    );
+
+    ctx.lineTo(
+        w - right,
+        h - bottom
+    );
+
+    ctx.stroke();
+
+
+    /* =========================
+       LINE
+       ========================= */
+
+    ctx.beginPath();
+
+    ctx.strokeStyle = "#7dd3fc";
+    ctx.lineWidth = 3;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    values.forEach(
+        function(value, index) {
+
+            const x =
+                left +
+                (
+                    index /
+                    Math.max(
+                        values.length - 1,
+                        1
+                    )
+                ) *
+                graphWidth;
+
+            const y =
+                h -
+                bottom -
+                (
+                    value /
+                    maxValue
+                ) *
+                graphHeight;
+
+            if (index === 0) {
+
+                ctx.moveTo(
+                    x,
+                    y
+                );
+
+            } else {
+
+                ctx.lineTo(
+                    x,
+                    y
+                );
+            }
+        }
+    );
+
+    ctx.stroke();
+
+
+    /* =========================
+       DATA POINTS + VALUES
+       ========================= */
+
+    values.forEach(
+        function(value, index) {
+
+            const x =
+                left +
+                (
+                    index /
+                    Math.max(
+                        values.length - 1,
+                        1
+                    )
+                ) *
+                graphWidth;
+
+            const y =
+                h -
+                bottom -
+                (
+                    value /
+                    maxValue
+                ) *
+                graphHeight;
+
+
+            /* Outer glow */
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                6,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+                "rgba(20, 165, 164, 0.20)";
+
+            ctx.fill();
+
+
+            /* Main point */
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                4,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle = "#14A5A4";
+            ctx.fill();
+
+            ctx.strokeStyle = "#7dd3fc";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+
+            /* Value */
+
+            ctx.fillStyle = "#cbd5e1";
+            ctx.font = "10px Arial";
+            ctx.textAlign = "center";
+
+            ctx.fillText(
+                Math.round(value),
+                x,
+                y - 10
+            );
+
+
+            /* Month */
+
+            ctx.fillStyle = "#cbd5e1";
+            ctx.font = "10px Arial";
+            ctx.textAlign = "center";
+
+            ctx.fillText(
+                labels[index],
+                x,
+                h - bottom + 18
+            );
+        }
+    );
+
+
+    /* =========================
+       X-AXIS TITLE
+       ========================= */
+
+    ctx.fillStyle = "#7dd3fc";
+    ctx.font = "bold 11px Arial";
+    ctx.textAlign = "center";
+
+    ctx.fillText(
+        "Month",
+        left + graphWidth / 2,
+        h - 8
+    );
+    }
+
+    function drawHorizontalBarChart(
+    canvasId,
+    labels,
+    values,
+    title
+) {
+
+    const canvas =
+        document.getElementById(canvasId);
+
+    if (!canvas) {
+        return;
+    }
+
+    const ctx =
+        canvas.getContext("2d");
+
+    canvas.width =
+        canvas.clientWidth * 2;
+
+    canvas.height =
+        canvas.clientHeight * 2;
+
+    ctx.scale(2, 2);
+
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+
+    ctx.clearRect(0, 0, w, h);
+
+    if (values.length === 0) {
+
+        ctx.fillStyle = "#7dd3fc";
+        ctx.font = "14px Arial";
+
+        ctx.fillText(
+            "No data available",
+            20,
+            40
+        );
+
+        return;
+    }
+
+    const maxValue =
+        Math.max(...values, 1);
+
+    const left = 100;
+    const right = 100;
+    const top = 45;
+    const bottom = 25;
+
+    const graphWidth =
+        w - left - right;
+
+    const graphHeight =
+        h - top - bottom;
+
+    const barSpace =
+        graphHeight / values.length;
+
+    const barHeight =
+        barSpace * 0.55;
+
+
+    /* TITLE */
+
+    ctx.fillStyle = "#7dd3fc";
+    ctx.font = "bold 14px Arial";
+    ctx.textAlign = "left";
+
+    ctx.fillText(
+        title,
+        left,
+        18
+    );
+
+
+    /* GRADIENT */
+
+    const gradient =
+        ctx.createLinearGradient(
+            left,
+            0,
+            w - right,
+            0
+        );
+
+    gradient.addColorStop(
+        0,
+        "#1687C9"
+    );
+
+    gradient.addColorStop(
+        0.5,
+        "#14A5A4"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#7dd3fc"
+    );
+
+
+    /* BARS */
+
+    values.forEach(
+        function(value, index) {
+
+            const y =
+                top +
+                index * barSpace +
+                (barSpace - barHeight) / 2;
+
+            const barWidth =
+                (value / maxValue) *
+                graphWidth;
+
+
+            /* USERNAME */
+
+            ctx.fillStyle = "#cbd5e1";
+            ctx.font = "11px Arial";
+            ctx.textAlign = "right";
+
+            ctx.fillText(
+                labels[index],
+                left - 10,
+                y + barHeight / 2 + 4
+            );
+
+
+            /* BAR */
+
+            ctx.fillStyle = gradient;
+
+            ctx.beginPath();
+
+            ctx.roundRect(
+                left,
+                y,
+                barWidth,
+                barHeight,
+                6
+            );
+
+            ctx.fill();
+
+
+            /* VALUE */
+
+            ctx.fillStyle = "#7dd3fc";
+            ctx.font = "bold 11px Arial";
+            ctx.textAlign = "left";
+
+            ctx.fillText(
+                value.toFixed(1) + " kWh",
+                left + barWidth + 8,
+                y + barHeight / 2 + 4
+            );
+        }
+    );
+}
+
+function drawDoughnutChart(
+    canvasId,
+    labels,
+    values
+) {
+
+    const canvas =
+        document.getElementById(canvasId);
+
+    if (!canvas) {
+        return;
+    }
+
+    const ctx =
+        canvas.getContext("2d");
+
+    canvas.width =
+        canvas.clientWidth * 2;
+
+    canvas.height =
+        canvas.clientHeight * 2;
+
+    ctx.scale(2, 2);
+
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+
+    ctx.clearRect(0, 0, w, h);
+
+    if (values.length === 0) {
+
+        ctx.fillStyle = "#7dd3fc";
+        ctx.font = "14px Arial";
+
+        ctx.fillText(
+            "No data available",
+            20,
+            40
+        );
+
+        return;
+    }
+
+    const total =
+        values.reduce(
+            (sum, value) => sum + value,
+            0
+        );
+
+    if (total === 0) {
+
+        ctx.fillStyle = "#7dd3fc";
+        ctx.font = "14px Arial";
+
+        ctx.fillText(
+            "No prediction data available",
+            20,
+            40
+        );
+
+        return;
+    }
+
+
+    /* TITLE */
+
+    ctx.fillStyle = "#7dd3fc";
+    ctx.font = "bold 14px Arial";
+    ctx.textAlign = "left";
+
+    ctx.fillText(
+        "Consumption Distribution",
+        20,
+        20
+    );
+
+
+    /* CHART POSITION */
+
+    const centerX = w * 0.42;
+    const centerY = h * 0.55;
+
+    const radius =
+        Math.min(w, h) * 0.30;
+
+    const innerRadius =
+        radius * 0.55;
+
+
+    /* SMART ENERGY COLOURS */
+
+    const colors = [
+    "#34d399", // Low - Green
+    "#fbbf24", // Moderate - Amber
+    "#fb7185" // High - Red
+    ];
+
+
+    let startAngle =
+        -Math.PI / 2;
+
+
+    /* DOUGHNUT */
+
+    values.forEach(
+        function(value, index) {
+
+            const sliceAngle =
+                (value / total) *
+                Math.PI * 2;
+
+            const endAngle =
+                startAngle +
+                sliceAngle;
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                centerX,
+                centerY
+            );
+
+            ctx.arc(
+                centerX,
+                centerY,
+                radius,
+                startAngle,
+                endAngle
+            );
+
+            ctx.closePath();
+
+            ctx.fillStyle =
+                colors[index % colors.length];
+
+            ctx.fill();
+
+            startAngle =
+                endAngle;
+        }
+    );
+
+
+    /* INNER CIRCLE */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        centerX,
+        centerY,
+        innerRadius,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fillStyle =
+        "rgba(7, 18, 30, 0.95)";
+
+    ctx.fill();
+
+
+    /* TOTAL */
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 22px Arial";
+    ctx.textAlign = "center";
+
+    ctx.fillText(
+        total,
+        centerX,
+        centerY + 5
+    );
+
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "10px Arial";
+
+    ctx.fillText(
+        "Predictions",
+        centerX,
+        centerY + 22
+    );
+
+
+    /* LEGEND */
+
+    const legendX = w * 0.70;
+    let legendY = h * 0.34;
+
+    labels.forEach(
+        function(label, index) {
+
+            ctx.fillStyle =
+                colors[index % colors.length];
+
+            ctx.beginPath();
+
+            ctx.roundRect(
+                legendX,
+                legendY - 9,
+                12,
+                12,
+                3
+            );
+
+            ctx.fill();
+
+
+            ctx.fillStyle = "#cbd5e1";
+            ctx.font = "11px Arial";
+            ctx.textAlign = "left";
+
+            ctx.fillText(
+                label,
+                legendX + 20,
+                legendY
+            );
+
+
+            ctx.fillStyle = "#7dd3fc";
+            ctx.font = "bold 11px Arial";
+
+            ctx.fillText(
+                values[index],
+                legendX + 20,
+                legendY + 17
+            );
+
+            legendY += 55;
+        }
+    );
+}
 
 });
 
@@ -1235,6 +2738,70 @@ function drawLineChart(
 </main>
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const paginationButtons =
+        document.querySelectorAll(".pagination-button");
+
+    const searchForm =
+    document.querySelector(".prediction-search-form");
+
+if (searchForm) {
+
+    searchForm.addEventListener("submit", function () {
+
+        sessionStorage.setItem(
+            "adminPaginationScroll",
+            window.scrollY
+        );
+
+    });
+
+}
+    const registeredSearchForm =
+    document.querySelector(".registered-search-form");
+
+if (registeredSearchForm) {
+
+    registeredSearchForm.addEventListener("submit", function () {
+
+        sessionStorage.setItem(
+            "adminPaginationScroll",
+            window.scrollY
+        );
+
+    });
+
+}
+    paginationButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            sessionStorage.setItem(
+                "adminPaginationScroll",
+                window.scrollY
+            );
+
+        });
+
+    });
+
+    const savedScroll =
+        sessionStorage.getItem("adminPaginationScroll");
+
+    if (savedScroll !== null) {
+
+        window.scrollTo({
+            top: parseInt(savedScroll, 10),
+            behavior: "instant"
+        });
+
+        sessionStorage.removeItem("adminPaginationScroll");
+    }
+
+});
+</script>
 
 </body>
 

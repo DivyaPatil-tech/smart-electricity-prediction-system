@@ -1,0 +1,750 @@
+/* =========================================================
+   SMART ENERGY ANALYTICS
+   Common Project Theme
+   ========================================================= */
+
+:root {
+    --energy-primary: #0b6e4f;
+    --energy-primary-dark: #064e3b;
+    --energy-secondary: #0ea5a4;
+    --energy-accent: #f59e0b;
+
+    --energy-dark: #0f172a;
+    --energy-text: #1e293b;
+    --energy-muted: #64748b;
+
+    --energy-white: #ffffff;
+    --energy-light: #f8fafc;
+    --energy-border: #e2e8f0;
+
+    --energy-success: #16a34a;
+    --energy-warning: #f59e0b;
+    --energy-danger: #dc2626;
+
+    --energy-radius: 16px;
+    --energy-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+
+    --energy-transition: 0.25s ease;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--energy-text);
+}
+
+
+/* =========================================================
+   COMMON CONTAINER
+   ========================================================= */
+
+.energy-container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.smart-energy-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--energy-white);
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+
+.smart-energy-brand:hover {
+    color: var(--energy-white);
+}
+
+
+/* =========================================================
+   COMMON CARDS
+   ========================================================= */
+
+.energy-card {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: var(--energy-radius);
+    box-shadow: var(--energy-shadow);
+    transition: transform var(--energy-transition),
+                box-shadow var(--energy-transition);
+}
+
+.energy-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.14);
+}
+
+
+/* =========================================================
+   COMMON BUTTONS
+   ========================================================= */
+
+.energy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 11px 20px;
+
+    font-weight: 600;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--energy-transition),
+        box-shadow var(--energy-transition),
+        opacity var(--energy-transition);
+}
+
+.energy-btn:hover {
+    transform: translateY(-2px);
+}
+
+.energy-btn-primary {
+    color: var(--energy-white);
+    background: linear-gradient(
+        135deg,
+        var(--energy-primary),
+        var(--energy-secondary)
+    );
+    box-shadow: 0 6px 18px rgba(11, 110, 79, 0.25);
+}
+
+.energy-btn-primary:hover {
+    color: var(--energy-white);
+    opacity: 0.95;
+}
+
+.energy-btn-secondary {
+    color: var(--energy-primary-dark);
+    background: var(--energy-white);
+    border: 1px solid var(--energy-border);
+}
+
+.energy-btn-secondary:hover {
+    color: var(--energy-primary-dark);
+}
+
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
+
+.energy-section-title {
+    margin-bottom: 6px;
+    color: var(--energy-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.energy-section-subtitle {
+    margin-bottom: 24px;
+    color: var(--energy-muted);
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.energy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .energy-container {
+        width: 94%;
+    }
+
+    .energy-section-title {
+        font-size: 1.3rem;
+    }
+
+    .energy-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .energy-container {
+        width: 95%;
+    }
+
+    .energy-section-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Home page heading protection */
+.hero h1 {
+    color: #ffffff !important;
+}
+
+.hero h1 span {
+    color: #7dd3fc !important;
+}
+
+/* Home page AI Energy Analytics badge visibility */
+.hero .badge {
+    color: #ffffff !important;
+    background: #7dd3fc(14, 165, 164, 0.22) !important;
+    border: 1px solid rgba(125, 211, 252, 0.55) !important;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+}
+
+/* Home page login card enhancement */
+
+.login-section .login-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.login-section .login-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #0ea5a4;
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+.login-section .login-card:hover {
+    transform: translateY(-4px);
+    background: rgba(14, 165, 164, 0.12);
+    border-color: rgba(125, 211, 252, 0.45);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.20);
+}
+
+.login-section .login-card:hover::before {
+    transform: scaleY(1);
+}
+
+/* Home login cards - visible styling */
+
+.login-section .login-card {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(125, 211, 252, 0.35) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transition: all 0.25s ease;
+}
+
+.login-section .login-card strong {
+    color: #ffffff !important;
+}
+
+.login-section .login-card small {
+    color: #d5e2eb !important;
+}
+
+.login-section .login-card .icon {
+    color: #7dd3fc;
+}
+
+.login-section .login-card:hover {
+    transform: translateY(-4px) !important;
+    background: rgba(14, 165, 164, 0.16) !important;
+    border-color: rgba(125, 211, 252, 0.65) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Home page tagline */
+
+.hero .tagline {
+    color: #7dd3fc;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
+
+/* Home page feature badges */
+
+.hero .features {
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.hero .feature {
+    padding: 10px 15px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(125, 211, 252, 0.25);
+
+    color: #e8f4fa;
+    font-size: 13px;
+    font-weight: 500;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+
+    transition: all 0.25s ease;
+}
+
+.hero .feature:hover {
+    transform: translateY(-3px);
+
+    background: rgba(14, 165, 164, 0.16);
+
+    border-color: rgba(125, 211, 252, 0.55);
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* Home page welcome section */
+
+.login-section .welcome-label {
+    display: inline-block;
+    width: fit-content;
+
+    padding: 6px 11px;
+    margin-bottom: 10px;
+
+    border-radius: 20px;
+
+    background: rgba(14, 165, 164, 0.14);
+    border: 1px solid rgba(125, 211, 252, 0.30);
+
+    color: #7dd3fc;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.login-section h2 {
+    color: #ffffff !important;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.login-section > p {
+    color: #cbd9e3 !important;
+    line-height: 1.6;
+}
+
+/* Home page footer */
+
+.login-section .footer-text {
+    text-align: center;
+    margin-top: 22px;
+
+    color: #aebdca;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.login-section .footer-text span {
+    color: #7dd3fc;
+    margin-right: 4px;
+}
+
+.login-section .footer-text small {
+    display: block;
+    margin-top: 3px;
+
+    color: #7f929f;
+    font-size: 11px;
+}
+
+/* Subtle energy glow */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -120px;
+    bottom: -130px;
+
+    border-radius: 50%;
+
+    background: rgba(14, 165, 164, 0.12);
+
+    filter: blur(45px);
+
+    pointer-events: none;
+}
+
+.login-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.login-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -100px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(125, 211, 252, 0.08);
+
+    filter: blur(40px);
+
+    pointer-events: none;
+}
+
+/* Smart Energy technology grid */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(125, 211, 252, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(125, 211, 252, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced energy glow */
+
+body::after {
+    content: "";
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    left: -180px;
+    top: 20%;
+
+    border-radius: 50%;
+
+    background: rgba(14, 165, 164, 0.10);
+
+    filter: blur(80px);
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* User Login page - main card */
+
+.login-container {
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(125, 211, 252, 0.30) !important;
+
+    background: rgba(7, 18, 30, 0.58) !important;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(14, 165, 164, 0.08);
+
+    backdrop-filter: blur(18px);
+}
+
+/* User Login branding */
+
+.login-container .logo {
+    color: #ffffff !important;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.login-container .logo::first-letter {
+    color: #7dd3fc;
+}
+
+.login-container .subtitle {
+    color: #7dd3fc !important;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* User Login - Welcome section */
+
+.login-container h2 {
+    color: #ffffff !important;
+    font-size: 27px !important;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    margin-bottom: 8px !important;
+}
+
+.login-container > p {
+    color: #cbd9e3 !important;
+    font-size: 14px !important;
+    line-height: 1.6;
+}
+
+/* User Login - input fields */
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100% !important;
+
+    padding: 13px 14px !important;
+
+    border: 1px solid rgba(125, 211, 252, 0.25) !important;
+    border-radius: 10px !important;
+
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #17212b !important;
+
+    font-size: 14px !important;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+.login-container input[type="text"]::placeholder,
+.login-container input[type="password"]::placeholder {
+    color: #7b8794;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #0ea5a4 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(14, 165, 164, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+
+    transform: translateY(-1px);
+}
+
+/* User Login - Login Button */
+
+.login-container button[type="submit"] {
+    width: 100% !important;
+    padding: 14px !important;
+
+    border: none !important;
+    border-radius: 10px !important;
+
+    background: linear-gradient(
+        135deg,
+        #0ea5a4,
+        #1687c9
+    ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 15px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(14, 165, 164, 0.22);
+
+    transition: all 0.25s ease;
+}
+
+.login-container button[type="submit"]:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(14, 165, 164, 0.32);
+
+    filter: brightness(1.08);
+}
+
+.login-container button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* User Login - Create Account Section */
+
+.login-container a {
+    color: #7dd3fc !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.login-container a:hover {
+    color: #5eead4 !important;
+    text-decoration: underline;
+}
+
+.login-container hr {
+    border: 0;
+    border-top: 1px solid rgba(125, 211, 252, 0.18);
+    margin: 24px 0 18px;
+}
+/* User Login - Secure Access Indicator */
+
+.login-container::after {
+    content: "🔒 Secure Login";
+    position: absolute;
+    bottom: 12px;
+    right: 18px;
+
+    color: rgba(203, 217, 227, 0.65);
+    font-size: 10px;
+    letter-spacing: 0.4px;
+}
+/* User Login - Username & Password Labels */
+
+.login-container label {
+    color: #e8f4fa !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px;
+}
+/* Login Page - Keep Existing Background Clean */
+
+body:has(.login-container)::before {
+    display: none !important;
+}
+
+body:has(.login-container)::after {
+    display: none !important;
+}
+
+/* Login Page - Brighter HD Background */
+
+body:has(.login-container) {
+    background: #0b1724 !important;
+}
+
+body:has(.login-container)::before {
+    display: block !important;
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2400&q=90");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter:
+        brightness(1.18)
+        contrast(1.08)
+        saturate(1.12);
+
+    z-index: 0;
+    pointer-events: none;
+}
+
+body:has(.login-container)::after {
+    display: none !important;
+}
+
+.login-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Forgot Password */
+
+.login-container .forgot-password {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 18px;
+}
+
+.login-container .forgot-password a {
+    color: #7dd3fc !important;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-container .forgot-password a:hover {
+    color: #5eead4 !important;
+    text-decoration: underline;
+}
+
+

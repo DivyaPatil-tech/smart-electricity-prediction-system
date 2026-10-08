@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +58,9 @@
             overflow: hidden;
 
             box-shadow:
-                0 25px 60px rgba(0, 0, 0, 0.45);
+            0 25px 60px rgba(0, 0, 0, 0.45),
+            0 0 35px rgba(0, 180, 255, 0.18),
+            0 0 80px rgba(0, 180, 255, 0.10);
 
             backdrop-filter: blur(10px);
         }
@@ -96,6 +99,11 @@
             line-height: 1.15;
 
             margin-bottom: 18px;
+
+            text-shadow:
+                0 0 6px rgba(0, 200, 255, 0.55),
+                0 0 18px rgba(0, 200, 255, 0.40),
+                0 0 35px rgba(0, 180, 255, 0.25);
         }
 
         h1 span {
@@ -192,8 +200,13 @@
 
             background: rgba(255, 255, 255, 0.10);
 
-            border-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(0, 200, 255, 0.55);
+
+            box-shadow:
+                0 0 15px rgba(0, 200, 255, 0.25),
+                0 0 30px rgba(0, 180, 255, 0.12);
         }
+
 
         .login-card strong {
             display: block;
@@ -268,6 +281,9 @@
         }
 
     </style>
+
+    <link rel="stylesheet" href="{% static 'css/smart_energy.css' %}">
+
 </head>
 
 <body>
@@ -285,6 +301,10 @@
             Smart Energy
             <span>Analytics</span>
         </h1>
+
+        <div class="tagline">
+        Predict. Understand. Save Energy.
+        </div>
 
         <p class="description">
             Smart Household Electricity Consumption
@@ -318,13 +338,17 @@
     <!-- RIGHT SIDE -->
     <section class="login-section">
 
-        <h2>
-            Welcome
-        </h2>
+        <div class="welcome-label">
+    SECURE ACCESS
+</div>
 
-        <p>
-            Select your access type to continue.
-        </p>
+<h2>
+    Welcome
+</h2>
+
+<p>
+    Choose your access type to continue to Smart Energy Analytics.
+</p>
 
 
         <!-- ADMIN LOGIN -->
@@ -368,8 +392,10 @@
 
 
         <div class="footer-text">
-            Smart energy insights powered by Machine Learning
-        </div>
+    <span>⚡</span>
+    Smart Energy Analytics
+    <small>Predict. Understand. Save Energy.</small>
+</div>
 
     </section>
 

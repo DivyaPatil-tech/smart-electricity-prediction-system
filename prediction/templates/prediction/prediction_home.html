@@ -19,44 +19,169 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
-            min-height: 100vh;
+    min-height: 100vh;
 
-            background:
-                linear-gradient(
-                    rgba(7, 20, 45, 0.55),
-                    rgba(8, 30, 60, 0.60)
-                ),
-                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2000&q=85");
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(14, 165, 233, 0.22),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(6, 182, 212, 0.14),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #061522 0%,
+            #08263b 45%,
+            #06344b 100%
+        );
 
-            background-size: cover;
+    background-attachment: fixed;
 
-            background-position: center;
+    padding: 35px 20px 35px 0;
 
-            background-attachment: fixed;
+    color: #17212b;
+}
 
-            padding: 35px 20px;
+        /* =========================================
+   SMART ENERGY SIDEBAR
+   ========================================= */
 
-            color: #17212b;
-        }
+.dashboard-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 235px;
+    height: 100vh;
+
+    padding: 24px 16px;
+    box-sizing: border-box;
+
+    background: rgba(7, 18, 30, 0.97);
+    border-right: 1px solid rgba(125, 211, 252, 0.18);
+
+    backdrop-filter: blur(18px);
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.18);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 10px 25px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    border-bottom: 1px solid rgba(125, 211, 252, 0.14);
+}
+
+.sidebar-menu {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 15px;
+
+    color: #cbd9e3 !important;
+    text-decoration: none !important;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.sidebar-link span:first-child {
+    width: 22px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.sidebar-link:hover {
+    color: #ffffff !important;
+
+    background: rgba(14, 165, 164, 0.14);
+
+    border-color: rgba(125, 211, 252, 0.20);
+
+    transform: translateX(3px);
+}
+
+.sidebar-link.active {
+    color: #ffffff !important;
+
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 164, 0.85),
+        rgba(22, 135, 201, 0.85)
+    );
+
+    border-color: rgba(125, 211, 252, 0.45);
+
+    box-shadow: 0 7px 20px rgba(14, 165, 164, 0.20);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(125, 211, 252, 0.14);
+}
+
+.logout-link:hover {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.25);
+}
 
         .main-container {
-            width: 1100px;
+    width: calc(100% - 285px);
+    max-width: 1250px;
 
-            max-width: 100%;
+    margin-left: 265px;
+    margin-right: 25px;
 
-            margin: auto;
+    background: rgba(255, 255, 255, 0.975);
 
-            background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(125, 211, 252, 0.35);
 
-            border-radius: 22px;
+    border-radius: 22px;
 
-            padding: 35px;
+    padding: 40px;
 
-            box-shadow:
-                0 25px 60px rgba(0, 0, 0, 0.40);
-        }
+    box-sizing: border-box;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.34),
+        0 0 45px rgba(14, 165, 233, 0.10);
+}
 
         .header {
             text-align: center;
@@ -79,18 +204,35 @@
         }
 
         .section-title {
-            font-size: 21px;
+    display: flex;
+    align-items: center;
 
-            color: #17212b;
+    font-size: 20px;
 
-            font-weight: bold;
+    color: #164e63;
 
-            padding-bottom: 12px;
+    font-weight: 800;
 
-            margin-bottom: 22px;
+    padding: 14px 16px;
 
-            border-bottom: 2px solid #1595d1;
-        }
+    margin-top: 8px;
+    margin-bottom: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #f1faff,
+        #eaf7fc
+    );
+
+    border: 1px solid #cfe8f5;
+
+    border-left: 5px solid #0ea5e9;
+
+    border-radius: 11px;
+
+    box-shadow:
+        0 5px 15px rgba(8, 121, 181, 0.07);
+}
 
         .form-grid {
             display: grid;
@@ -107,96 +249,140 @@
         .field label {
             display: block;
 
-            font-weight: bold;
+            font-weight: 700;
 
-            color: #34495e;
+            color: #164e63;
 
-            margin-bottom: 7px;
+            margin-bottom: 8px;
 
-            font-size: 14px;
+            font-size: 13px;
+
+            letter-spacing: 0.2px;
         }
 
         .field input,
         .field select {
-            width: 100%;
+    width: 100%;
 
-            padding: 12px;
+    min-height: 44px;
 
-            border: 1px solid #ccd5dc;
+    padding: 11px 13px;
 
-            border-radius: 8px;
+    border: 1px solid #c9dce6;
 
-            background: white;
+    border-radius: 9px;
 
-            font-size: 14px;
-        }
+    background: rgba(255, 255, 255, 0.96);
+
+    color: #263746;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
 
         .field input:focus,
         .field select:focus {
-            outline: none;
+    outline: none;
 
-            border-color: #1595d1;
+    background: #ffffff;
 
-            box-shadow:
-                0 0 0 3px rgba(21,149,209,0.12);
-        }
+    border-color: #0ea5e9;
+
+    box-shadow:
+        0 0 0 3px rgba(14, 165, 233, 0.12),
+        0 4px 12px rgba(8, 121, 181, 0.06);
+}
+
         .button-area {
             text-align: center;
             margin-top: 30px;
         }
 
         .predict-button {
-            width: 100%;
-            max-width: 400px;
+    width: 100%;
+    max-width: 420px;
 
-            padding: 15px 25px;
+    padding: 15px 28px;
 
-            border: none;
-            border-radius: 10px;
+    border: none;
+    border-radius: 12px;
 
-            background: linear-gradient(
-                135deg,
-                #0879b5,
-                #12a4df
-            );
+    background: linear-gradient(
+        135deg,
+        #0879b5,
+        #0ea5e9,
+        #06b6d4
+    );
 
-            color: white;
+    color: #ffffff;
 
-            font-size: 17px;
-            font-weight: bold;
+    font-size: 16px;
+    font-weight: 800;
 
-            cursor: pointer;
+    letter-spacing: 0.2px;
 
-            box-shadow:
-                0 8px 20px rgba(8,121,181,0.30);
-        }
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(8, 121, 181, 0.28);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
 
         .predict-button:hover {
-            transform: translateY(-2px);
+    transform: translateY(-3px);
 
-            box-shadow:
-                0 12px 25px rgba(8,121,181,0.40);
-        }
+    filter: brightness(1.04);
+
+    box-shadow:
+        0 15px 32px rgba(8, 121, 181, 0.35);
+}
+
+        .predict-button:active {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 18px rgba(8, 121, 181, 0.25);
+}
+
 
         .result-section {
-            margin-top: 35px;
+    margin-top: 38px;
+    padding-top: 30px;
 
-            padding-top: 25px;
+    border-top: 1px solid #cfe3ed;
 
-            border-top: 2px solid #d9e3e9;
-        }
+    background: linear-gradient(
+        135deg,
+        rgba(246, 252, 255, 0.75),
+        rgba(238, 249, 253, 0.75)
+    );
+
+    border-radius: 16px;
+    padding: 30px 24px 24px;
+}
+
 
         .result-title {
-            text-align: center;
+    text-align: center;
 
-            font-size: 24px;
+    font-size: 25px;
+    font-weight: 800;
 
-            font-weight: bold;
+    color: #164e63;
 
-            color: #0879b5;
+    margin-bottom: 25px;
 
-            margin-bottom: 22px;
-        }
+    letter-spacing: -0.2px;
+}
 
         .result-grid {
             display: grid;
@@ -206,34 +392,76 @@
         }
 
         .result-card {
-            padding: 30px 25px;
-            border-radius: 16px;
-            text-align: center;
-            background: #ffffff;
-            border: 1px solid #dbe5eb;
-            box-shadow:
-                0 7px 20px rgba(0, 0, 0, 0.09);
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-            min-height: 155px;
+    position: relative;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    padding: 30px 24px;
+    min-height: 190px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f4fbff
+    );
+
+    border: 1px solid #cfe5ef;
+
+    box-shadow:
+        0 10px 25px rgba(8, 121, 181, 0.10);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
         .result-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.14);
-        }
+    transform: translateY(-5px);
+
+    border-color: #8fcde5;
+
+    box-shadow:
+        0 16px 32px rgba(8, 121, 181, 0.16);
+}
+
+
 
         .result-icon {
-            font-size: 30px;
+    width: 58px;
+    height: 58px;
 
-            margin-bottom: 10px;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #e5f6ff,
+        #d8f2ff
+    );
+
+    color: #0879b5;
+
+    font-size: 28px;
+
+    box-shadow:
+        0 6px 15px rgba(8, 121, 181, 0.10);
+}
 
         .result-label {
             font-size: 15px;
@@ -246,11 +474,17 @@
         }
 
         .result-value {
-            font-size: 30px;
-            font-weight: 700;
-            color: #0879b5;
-            margin-top: 2px;
-        }
+    font-size: 32px;
+
+    font-weight: 800;
+
+    color: #0879b5;
+
+    margin-top: 3px;
+
+    letter-spacing: -0.5px;
+}
+
 
         .bill-card .result-value {
             color: #168447;
@@ -266,34 +500,48 @@
         }
 
         .new-prediction-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 210px;
-            padding: 13px 22px;
-            background: linear-gradient(
-                135deg,
-                #0879b5,
-                #12a4df
-            );
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.25s ease;
-            box-shadow: 0 6px 15px rgba(8,121,181,0.20);
-        }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 220px;
+    padding: 13px 22px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #0879b5,
+        #0ea5e9,
+        #06b6d4
+    );
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(8, 121, 181, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
 
         .new-prediction-button:hover {
-            background: linear-gradient(
-                135deg,
-                #065f8c,
-                #0879b5
-            );
-            transform: translateY(-2px);
-            box-shadow: 0 9px 20px rgba(8,121,181,0.30);
-        }
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(8, 121, 181, 0.30);
+    filter: brightness(1.03);
+}
+
+.new-prediction-button:active {
+    transform: translateY(0);
+}
 
         .logout-area {
             text-align: right;
@@ -354,36 +602,55 @@
 
         .consumption-level-card {
             margin-top: 28px;
-            padding: 26px;
-            background: linear-gradient(135deg, #f8fcff, #eef8fc);
-            border: 1px solid #d7e7ef;
+            padding: 28px 25px;
+            background: linear-gradient(135deg, #f8fcff, #edf8fc);
+            border: 1px solid #cfe5ef;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 22px rgba(8, 121, 181, 0.09);
+
+            position: relative;
+            overflow: hidden;
         }
 
         .consumption-level-title {
-            font-size: 21px;
-            font-weight: 700;
-            color: #0879b5;
+            font-size: 20px;
+            font-weight: 800;
+            color: #164e63;
             margin-bottom: 18px;
+            letter-spacing: 0.1px;
         }
 
         .consumption-level {
-            display: inline-block;
-            padding: 11px 26px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 0.2px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-        }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 210px;
+
+    padding: 12px 28px;
+
+    border-radius: 30px;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.08);
+}
 
         .consumption-level-card p {
-            margin-top: 12px;
-            color: #52616b;
-            line-height: 1.6;
-        }
+    max-width: 700px;
+
+    margin: 14px auto 0;
+
+    color: #52616b;
+
+    font-size: 14px;
+    line-height: 1.65;
+}
 
         .consumption-level.low {
             background: #e8f7ee;
@@ -407,38 +674,63 @@
         }
 
         .energy-factors-title {
-            font-size: 23px;
-            font-weight: bold;
-            color: #0879b5;
-            margin-bottom: 15px;
-            text-align: center;
-        }
+    font-size: 21px;
+    font-weight: 800;
+    color: #164e63;
+    margin-bottom: 8px;
+    text-align: left;
+    letter-spacing: 0.1px;
+}
+
+
+        .energy-factors-subtitle {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #718391;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+}
 
         .energy-factors-card {
-            background: #ffffff;
-            border: 1px solid #dbe5eb;
-            border-radius: 16px;
-            padding: 22px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-        }
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f6fbfd
+    );
+
+    border: 1px solid #d5e8f1;
+    border-radius: 16px;
+
+    padding: 18px 22px;
+
+    box-shadow:
+        0 8px 22px rgba(8, 121, 181, 0.08);
+}
 
         .energy-factor-item {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding: 17px 10px;
-            border-bottom: 1px solid #e5edf2;
-            transition: background 0.2s ease;
-        }
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 16px 10px;
+
+    border-bottom: 1px solid #e2edf3;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
 
         .energy-factor-item:last-child {
             border-bottom: none;
         }
 
         .energy-factor-item:hover {
-            background: #f8fcff;
-            border-radius: 10px;
-        }
+    background: #f1faff;
+    border-radius: 10px;
+    transform: translateX(3px);
+}
 
         .energy-factor-rank {
             font-size: 22px;
@@ -450,17 +742,19 @@
         }
 
         .energy-factor-name {
-            font-weight: 700;
-            color: #34495e;
-            font-size: 16px;
-            margin-bottom: 2px;
-        }
+    font-weight: 800;
+    color: #164e63;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
 
         .energy-factor-description {
-            margin-top: 4px;
-            color: #687783;
-            font-size: 14px;
-        }
+    margin-top: 4px;
+    color: #718391;
+    font-size: 13px;
+    line-height: 1.5;
+}
 
         .energy-factor-score {
             background: #eef8ff;
@@ -492,45 +786,90 @@
         }
 
         .recommendation-title {
-            font-size: 23px;
-            font-weight: bold;
-            color: #0879b5;
-            margin-bottom: 15px;
-            text-align: center;
-        }
+    font-size: 21px;
+    font-weight: 800;
+    color: #164e63;
+    margin-bottom: 8px;
+    text-align: left;
+    letter-spacing: 0.1px;
+}
+
+
+        .recommendation-subtitle {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #718391;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+}
 
         .recommendation-card {
-            background: linear-gradient(135deg, #f7fcff, #eef9fd);
-            border: 1px solid #cfe8f5;
-            border-radius: 16px;
-            padding: 22px 24px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-        }
+    background: linear-gradient(
+        135deg,
+        #f8fcff,
+        #eef9fd
+    );
+
+    border: 1px solid #cfe5ef;
+    border-radius: 16px;
+
+    padding: 18px 22px;
+
+    box-shadow:
+        0 8px 22px rgba(8, 121, 181, 0.08);
+}
+
 
         .recommendation-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            padding: 14px 8px;
-            border-bottom: 1px solid #dcecf4;
-            font-size: 15px;
-            line-height: 1.65;
-            color: #34495e;
-            transition: background 0.2s ease;
-        }
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    padding: 15px 10px;
+
+    border-bottom: 1px solid #dcecf4;
+
+    font-size: 14px;
+    line-height: 1.65;
+
+    color: #34495e;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
 
         .recommendation-item:hover {
-            background: rgba(255, 255, 255, 0.65);
-            border-radius: 10px;
-        }
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    transform: translateX(3px);
+}
 
         .recommendation-item:last-child {
             border-bottom: none;
         }
 
         .recommendation-icon {
-            font-size: 20px;
-        }
+    flex-shrink: 0;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e3f5fc;
+    color: #0879b5;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 4px 10px rgba(8, 121, 181, 0.08);
+}
 
         .download-report-area {
             margin-top: 25px;
@@ -538,35 +877,58 @@
         }
 
         .download-report-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-width: 245px;
-            padding: 13px 22px;
-            background: linear-gradient(
-                135deg,
-                #168447,
-                #1aa05a
-            );
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            transition: all 0.25s ease;
-            box-shadow: 0 6px 16px rgba(22,132,71,0.20);
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: fit-content;
+    min-width: 280px;
+    margin: 22px auto 8px;
+    padding: 13px 22px;
+    background: linear-gradient(135deg, #0879b5, #0ea5e9);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 11px;
+    border: 1px solid rgba(14, 165, 233, 0.35);
+    box-shadow: 0 8px 20px rgba(8, 121, 181, 0.20);
+    transition: all 0.25s ease;
+}
+
+.download-report-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(8, 121, 181, 0.28);
+    color: #ffffff;
+}
+
+.download-report-button .report-icon {
+    font-size: 22px;
+}
+
+.download-report-button strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.download-report-button small {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.82);
+}
+
 
         .download-report-button:hover {
-        background: linear-gradient(
-        135deg,
-        #116b3a,
-        #168447
-        );
-        transform: translateY(-2px);
-        box-shadow: 0 9px 20px rgba(22,132,71,0.30);
+            color: #ffffff !important;
+            text-decoration: none;
+
+            transform: translateY(-3px);
+
+            background: linear-gradient(135deg, #1976d2, #00acc1);
+
+            box-shadow: 0 10px 25px rgba(8, 121, 181, 0.4);
         }
+
 
         .energy-chatbot {
             position: fixed;
@@ -775,13 +1137,593 @@
                 margin-top: 2px;
             }
 
+            @media (max-width: 900px) {
+
+    body {
+        padding-left: 220px;
+    }
+
+    .dashboard-sidebar {
+        width: 200px;
+    }
+
+    .main-container {
+        width: 100%;
+        margin-left: 0;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 15px;
+    }
+
+    .dashboard-sidebar {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        min-height: auto;
+    }
+
+    .sidebar-menu {
+        margin-top: 15px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 18px;
+    }
+
+    .main-container {
+        width: 100%;
+
+        margin-left: 0;
+        margin-right: 0;
+
+        padding: 20px;
+    }
+}
+/* =========================================
+   PREDICTION PAGE PREMIUM UI
+   ========================================= */
+
+/* Main prediction card */
+.main-container {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(125, 211, 252, 0.35);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.28),
+        0 0 35px rgba(14, 165, 233, 0.08);
+
+    backdrop-filter: blur(12px);
+
+    transition: box-shadow 0.3s ease;
+}
+
+.main-container:hover {
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.30),
+        0 0 45px rgba(14, 165, 233, 0.12);
+}
+
+
+/* Page header */
+.header {
+    padding: 8px 10px 22px;
+}
+
+.header h1 {
+    font-size: 34px;
+
+    background: linear-gradient(
+        135deg,
+        #0879b5,
+        #0ea5e9,
+        #06b6d4
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    letter-spacing: -0.5px;
+}
+
+.header p {
+    color: #667784;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* Household Information heading */
+.section-title {
+    display: flex;
+    align-items: center;
+
+    padding: 13px 15px;
+
+    margin-top: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #f1faff,
+        #eaf7fc
+    );
+
+    border: 1px solid #cfe8f5;
+    border-left: 5px solid #0ea5e9;
+
+    border-radius: 10px;
+
+    color: #164e63;
+
+    box-shadow: 0 5px 15px rgba(8, 121, 181, 0.07);
+}
+
+
+/* Individual form fields */
+.field {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #d9e8ef;
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.field:hover {
+    background: #ffffff;
+    border-color: #9ed3e8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(8, 121, 181, 0.10);
+}
+
+/* Field labels */
+.field label {
+    color: #23445a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1px;
+}
+
+
+/* Input and select fields */
+.field input,
+.field select {
+    margin-top: 2px;
+
+    border: 1px solid #cbdce5;
+
+    background: #ffffff;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.field input:hover,
+.field select:hover {
+    border-color: #8cc9e5;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: #0ea5e9;
+
+    box-shadow:
+        0 0 0 3px rgba(14, 165, 233, 0.13),
+        0 5px 14px rgba(8, 121, 181, 0.08);
+
+    transform: translateY(-1px);
+}
+
+
+/* Help text */
+.field small {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #718391;
+
+    font-size: 11.5px;
+
+    line-height: 1.45;
+
+    font-weight: 400;
+}
+
+
+/* Predict button */
+.predict-button {
+    position: relative;
+
+    background: linear-gradient(
+        135deg,
+        #0879b5,
+        #0ea5e9,
+        #06b6d4
+    );
+
+    border-radius: 12px;
+
+    padding: 16px 28px;
+
+    box-shadow:
+        0 10px 25px rgba(8, 121, 181, 0.28);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.predict-button:hover {
+    transform: translateY(-3px) scale(1.01);
+
+    box-shadow:
+        0 15px 30px rgba(8, 121, 181, 0.35);
+}
+
+.predict-button:active {
+    transform: translateY(0);
+}
+
+
+/* Button area */
+.button-area {
+    text-align: center;
+
+    margin-top: 32px;
+    margin-bottom: 8px;
+
+    padding-top: 6px;
+}
+
+/* User profile card */
+.user-profile-card {
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f4fbff
+    );
+
+    border: 1px solid #d6e8f1;
+
+    box-shadow:
+        0 6px 18px rgba(8, 121, 181, 0.08);
+}
+
+.user-avatar {
+    background: linear-gradient(
+        135deg,
+        #e5f6ff,
+        #d8f2ff
+    );
+}
+
+
+/* Prediction page section spacing */
+.form-grid {
+    margin-top: 6px;
+    padding: 22px;
+    background: linear-gradient(
+        135deg,
+        rgba(248, 252, 255, 0.95),
+        rgba(241, 249, 253, 0.95)
+    );
+    border: 1px solid #dcecf4;
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Error messages */
+.error {
+    margin-top: 6px;
+
+    padding: 6px 9px;
+
+    background: #fff1f1;
+
+    border-left: 3px solid #dc2626;
+
+    border-radius: 5px;
+
+    color: #b91c1c;
+
+    font-size: 12px;
+}
+
+
+/* Better mobile appearance */
+@media (max-width: 600px) {
+
+    .main-container {
+        border-radius: 16px;
+    }
+
+    .header h1 {
+        font-size: 27px;
+    }
+
+    .field {
+        padding: 12px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+}
+/* =========================================
+   STAGE 12E — HEADER & USER PROFILE
+   ========================================= */
+
+/* User profile */
+.user-profile-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    width: fit-content;
+
+    margin-left: auto;
+    margin-bottom: 24px;
+
+    padding: 9px 14px;
+
+    background: linear-gradient(
+        135deg,
+        #f8fcff,
+        #eef8fd
+    );
+
+    border: 1px solid #cfe4ef;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 18px rgba(8, 121, 181, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.user-profile-card:hover {
+    transform: translateY(-2px);
+
+    border-color: #9ed3e8;
+
+    box-shadow:
+        0 9px 22px rgba(8, 121, 181, 0.13);
+}
+
+
+/* User avatar */
+.user-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #dff5ff,
+        #c9edff
+    );
+
+    border: 1px solid #b9dfef;
+
+    font-size: 18px;
+
+    box-shadow:
+        0 4px 10px rgba(8, 121, 181, 0.08);
+}
+
+
+/* User information */
+.user-profile-info {
+    min-width: 95px;
+}
+
+.user-profile-name {
+    font-size: 14px;
+
+    font-weight: 800;
+
+    color: #164e63;
+
+    line-height: 1.3;
+}
+
+.user-profile-role {
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: #718391;
+
+    line-height: 1.3;
+}
+
+
+/* Main page header */
+.header {
+    text-align: center;
+
+    padding: 4px 20px 24px;
+
+    margin-bottom: 8px;
+}
+
+.header h1 {
+    margin-bottom: 9px;
+
+    font-size: 34px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.6px;
+
+    line-height: 1.2;
+
+    background: linear-gradient(
+        135deg,
+        #0879b5,
+        #0ea5e9,
+        #06b6d4
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}
+
+.header p {
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    color: #687b88;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* Small energy accent under header */
+.header::after {
+    content: "";
+
+    display: block;
+
+    width: 65px;
+    height: 3px;
+
+    margin: 16px auto 0;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #0879b5,
+        #0ea5e9,
+        #06b6d4
+    );
+
+    box-shadow:
+        0 3px 10px rgba(14, 165, 233, 0.22);
+}
+
+
+/* Mobile header/profile */
+@media (max-width: 600px) {
+
+    .user-profile-card {
+        margin-left: 0;
+        margin-right: auto;
+
+        margin-bottom: 20px;
+    }
+
+    .header {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .header h1 {
+        font-size: 27px;
+
+        letter-spacing: -0.3px;
+    }
+
+    .header p {
+        font-size: 13px;
+    }
+}
+
     </style>
 
 </head>
 
 <body>
 
-    <div class="main-container">
+<aside class="dashboard-sidebar">
+
+    <div class="sidebar-brand">
+        ⚡
+        <span>Smart Energy</span>
+    </div>
+
+    <div class="sidebar-menu">
+
+        <a href="{% url 'user_dashboard' %}" class="sidebar-link">
+            <span>🏠</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="{% url 'prediction_home' %}" class="sidebar-link active">
+            <span>⚡</span>
+            <span>New Prediction</span>
+        </a>
+
+        <a href="{% url 'user_analytics' %}" class="sidebar-link">
+            <span>📊</span>
+            <span>My Energy Analytics</span>
+        </a>
+
+        <a href="{% url 'prediction_history' %}" class="sidebar-link">
+            <span>📜</span>
+            <span>Prediction History</span>
+        </a>
+
+        <a href="{% url 'download_prediction_report' %}" class="sidebar-link">
+            <span>📄</span>
+            <span>Download Report</span>
+        </a>
+
+    </div>
+
+    <div class="sidebar-bottom">
+
+        <a href="{% url 'logout' %}" class="sidebar-link logout-link">
+            <span>🚪</span>
+            <span>Logout</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+<div class="main-container">
+
 
     <!-- Logged-in User -->
     <div class="user-profile-card">
@@ -878,7 +1820,7 @@
 
     {% if prediction is not None %}
 
-            <div class="result-section">
+            <div class="result-section" id="prediction-result-section">
 
                 <div class="result-title">
                     ⚡ Prediction Result
@@ -927,7 +1869,7 @@
             </div>
 
             <!-- Consumption Level Indicator -->
-            <div class="consumption-level-card">
+            <div class="consumption-level-card" id="consumption-level-section">
 
                 <div class="consumption-level-title">
                     📊 Consumption Level
@@ -974,25 +1916,26 @@
 
             <div class="new-prediction-area">
 
-            <a href="#prediction-form"
-            class="new-prediction-button">
-                🔄 Make Another Prediction
-            </a>
-            <a href="{% url 'prediction_history' %}"
-            class="new-prediction-button">
-                📊 Prediction History
-            </a>
+    <button type = "button"
+       class="new-prediction-button"
+       onclick="startNewPrediction()">
+        🔄 Make Another Prediction
+    </button>
 
-        </div>
+</div>
 
         {% endif %}
 
         {% if top_energy_factors %}
-<div class="energy-factors-section">
+<div class="energy-factors-section" id="top-factors-section">
 
     <div class="energy-factors-title">
-        🔎 Top Energy-Consuming Factors
-    </div>
+    🔎 Top Energy-Consuming Factors
+</div>
+
+<div class="energy-factors-subtitle">
+    Based on your latest electricity prediction
+</div>
 
     <div class="energy-factors-card">
 
@@ -1054,11 +1997,16 @@
 
 
         {% if recommendations %}
-        <div class="recommendation-section">
+        <div class="recommendation-section" id="recommendations-section">
 
             <div class="recommendation-title">
-                💡 Personalized Energy-Saving Recommendations
+    💡 Personalized Energy-Saving Recommendations
             </div>
+
+            <div class="recommendation-subtitle">
+                Smart suggestions based on your latest prediction
+            </div>
+
 
             <div class="recommendation-card">
 
@@ -1074,27 +2022,20 @@
         </div>
 
         <!-- Download Prediction Report -->
-        <div class="download-report-area">
+        <div class="download-report-area" id="download-report-section">
 
-            <a href="{% url 'download_prediction_report' %}"
-            class="download-report-button">
-                📄 Download Prediction Report
-            </a>
+    <a href="{% url 'download_prediction_report' %}"
+       class="download-report-button">
+        <span class="report-icon">📄</span>
+        <span>
+            <strong>Download Prediction Report</strong>
+            <small>Save your latest energy analysis as PDF</small>
+        </span>
+    </a>
 
-        </div>
+</div>
         
         {% endif %}
-
-        
-
-        <div class="logout-area">
-
-            <a href="{% url 'logout' %}">
-                Logout
-            </a>
-
-        </div>
-
 
 </div>
 
@@ -1114,6 +2055,100 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+
+
+<script>
+function startNewPrediction() {
+
+    const form = document.getElementById("prediction-form");
+
+    const newPredictionButton = document.querySelector(".new-prediction-button");
+
+if (newPredictionButton) {
+    newPredictionButton.style.display = "none";
+}
+
+    if (!form) {
+        return;
+    }
+
+    // Clear all text/number inputs
+    const inputs = form.querySelectorAll("input");
+
+    inputs.forEach(function(input) {
+
+        // Keep CSRF token
+        if (input.type === "hidden") {
+            return;
+        }
+
+        if (input.type === "checkbox" || input.type === "radio") {
+            input.checked = false;
+        } else {
+            input.value = "";
+        }
+    });
+
+    // Reset all dropdowns to their first option
+    const selects = form.querySelectorAll("select");
+
+    selects.forEach(function(select) {
+        select.selectedIndex = 0;
+    });
+
+    // Remove validation messages
+    const errors = form.querySelectorAll(".error");
+
+    errors.forEach(function(error) {
+        error.remove();
+    });
+    // Hide previous prediction results
+    const resultSection = document.getElementById("prediction-result-section");
+    const consumptionLevel = document.getElementById("consumption-level-section");
+    const topFactors = document.getElementById("top-factors-section");
+    const recommendations = document.getElementById("recommendations-section");
+    const downloadReport = document.getElementById("download-report-section");
+
+    if (resultSection) {
+        resultSection.style.display = "none";
+    }
+
+    if (consumptionLevel) {
+        consumptionLevel.style.display = "none";
+    }
+
+    if (topFactors) {
+        topFactors.style.display = "none";
+    }
+
+    if (recommendations) {
+        recommendations.style.display = "none";
+    }
+
+    if(downloadReport) {
+        downloadReport.style.display = "none";
+    }
+    
+    // Scroll back to prediction form
+    form.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    // Focus first usable field
+    const firstField = form.querySelector(
+        "input:not([type='hidden']), select"
+    );
+
+    if (firstField) {
+        setTimeout(function() {
+            firstField.focus();
+        }, 500);
+    }
+}
+</script>
+
+
 
 <!-- Smart Energy Chatbot -->
 

@@ -167,6 +167,349 @@
 
         }
 
+
+            /* =====================================================
+        SMART ENERGY PREDICTION DETAILS THEME
+        ===================================================== */
+
+        body {
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(14, 165, 164, 0.14),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(22, 135, 201, 0.14),
+                    transparent 35%
+                ),
+                #07121e !important;
+
+            color: #e8f4fa;
+        }
+
+        /* Main container */
+
+        .container {
+            max-width: 1100px !important;
+            margin: 40px auto !important;
+        }
+
+        /* Header */
+
+        .header {
+            background: rgba(7, 18, 30, 0.72) !important;
+
+            border: 1px solid rgba(125, 211, 252, 0.22) !important;
+
+            border-radius: 18px !important;
+
+            padding: 28px !important;
+
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.30),
+                0 0 30px rgba(14, 165, 164, 0.06);
+
+            backdrop-filter: blur(16px);
+        }
+
+        .header h1 {
+            color: #ffffff !important;
+
+            font-size: 28px !important;
+
+            letter-spacing: 0.2px;
+        }
+
+        .header p {
+            color: #9fb1bd !important;
+
+            font-size: 13px;
+        }
+
+        /* Sections */
+
+        .section {
+            background: rgba(7, 18, 30, 0.68) !important;
+
+            border: 1px solid rgba(125, 211, 252, 0.16) !important;
+
+            border-radius: 16px !important;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.20);
+
+            backdrop-filter: blur(14px);
+
+            margin-top: 22px !important;
+
+            padding: 24px !important;
+        }
+
+        .section h2 {
+            color: #ffffff !important;
+
+            font-size: 18px !important;
+
+            margin-bottom: 18px !important;
+        }
+
+        /* Detail cards */
+
+        .detail {
+            background: rgba(255, 255, 255, 0.045) !important;
+
+            border: 1px solid rgba(125, 211, 252, 0.10) !important;
+
+            border-radius: 10px !important;
+
+            transition: 0.25s ease;
+        }
+
+        .detail:hover {
+            background: rgba(14, 165, 164, 0.08) !important;
+
+            border-color: rgba(125, 211, 252, 0.25) !important;
+
+            transform: translateY(-2px);
+        }
+
+        .label {
+            color: #8fa7b5 !important;
+        }
+
+        .value {
+            color: #ffffff !important;
+        }
+
+        /* Prediction result cards */
+
+        .result-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(14, 165, 164, 0.12),
+                    rgba(22, 135, 201, 0.10)
+                ) !important;
+
+            border: 1px solid rgba(125, 211, 252, 0.20);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.15);
+
+            transition: 0.25s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-4px);
+
+            border-color: rgba(125, 211, 252, 0.40);
+
+            box-shadow:
+                0 15px 30px rgba(14, 165, 164, 0.12);
+        }
+
+        .result-title {
+            color: #9fb1bd !important;
+        }
+
+        .result-value {
+    color: #7dd3fc !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 14px rgba(125, 211, 252, 0.18);
+        }
+
+        /* Back button */
+
+        .back-button {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5a4,
+                    #1687c9
+                ) !important;
+
+            border: 1px solid rgba(125, 211, 252, 0.35) !important;
+
+            border-radius: 10px !important;
+
+            color: #ffffff !important;
+
+            font-weight: 700 !important;
+
+            box-shadow:
+                0 7px 18px rgba(14, 165, 164, 0.20);
+
+            transition: 0.25s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(14, 165, 164, 0.30);
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 20px auto !important;
+                padding: 0 12px;
+            }
+
+            .header {
+                padding: 22px !important;
+            }
+
+            .header h1 {
+                font-size: 22px !important;
+            }
+
+            .section {
+                padding: 18px !important;
+            }
+
+        }   
+
+            .details-brand {
+                margin-bottom: 12px;
+
+                color: #7dd3fc;
+
+                font-size: 13px;
+                font-weight: 700;
+
+                letter-spacing: 0.5px;
+            }
+
+            .details-brand span {
+                color: #9fb1bd;
+                font-weight: 500;
+            }
+
+            /* ---------- Energy Summary ---------- */
+
+.energy-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 165, 164, 0.12),
+            rgba(22, 135, 201, 0.10)
+        );
+
+    border: 1px solid rgba(125, 211, 252, 0.20);
+    border-radius: 14px;
+
+    transition: 0.25s ease;
+}
+
+.energy-summary-card:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(125, 211, 252, 0.40);
+
+    box-shadow:
+        0 12px 28px rgba(14, 165, 164, 0.12);
+}
+
+.energy-summary-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0ea5a4,
+            #1687c9
+        );
+
+    font-size: 25px;
+
+    box-shadow:
+        0 6px 18px rgba(14, 165, 164, 0.20);
+}
+
+.energy-summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.energy-summary-label {
+    color: #9fb1bd;
+    font-size: 13px;
+}
+
+.energy-summary-level {
+    color: #7dd3fc;
+    font-size: 20px;
+}
+
+.energy-summary-content p {
+    color: #8fa7b5;
+    font-size: 12px;
+}
+
+/* ---------- Consumption Level Indicator ---------- */
+
+.energy-level-indicator {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 430px;
+}
+
+.energy-level-track {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    height: 8px;
+}
+
+.energy-level-segment {
+    border-radius: 20px;
+    opacity: 0.75;
+}
+
+.energy-level-segment.low {
+    background: #22c55e;
+}
+
+.energy-level-segment.moderate {
+    background: #eab308;
+}
+
+.energy-level-segment.high {
+    background: #ef4444;
+}
+
+.energy-level-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+
+    color: #8fa7b5;
+    font-size: 11px;
+}
+
+
     </style>
 
 </head>
@@ -176,6 +519,10 @@
 
 <div class="container">
 
+    <div class="details-brand">
+    ⚡ Smart Energy Analytics
+    <span> / Prediction Details</span>
+    </div>
 
     <!-- HEADER -->
 
@@ -189,18 +536,60 @@
             Complete household electricity prediction information
         </p>
 
+        <div style="
+        margin-top: 14px;
+        display: inline-block;
+        padding: 7px 14px;
+        border-radius: 20px;
+        background: rgba(125, 211, 252, 0.10);
+        border: 1px solid rgba(125, 211, 252, 0.22);
+        color: #7dd3fc;
+        font-size: 12px;
+        font-weight: 700;
+        ">
+        ⚡
+        {% if prediction.predicted_consumption_kwh < 300 %}
+            LOW CONSUMPTION
+        {% elif prediction.predicted_consumption_kwh <= 600 %}
+            MODERATE CONSUMPTION
+        {% else %}
+            HIGH CONSUMPTION
+        {% endif %}
+    </div>
+
     </div>
 
 
     <!-- BACK BUTTON -->
 
-    <a href="{% url 'admin_dashboard' %}"
-       class="back-button">
+        {% if request.user.is_staff %}
 
-        ← Back to Dashboard
+<a href="{% url 'admin_user_prediction_history' selected_user.id %}"
+   class="back-button">
 
-    </a>
+    ← Back to Prediction History
 
+</a>
+
+<a href="{% url 'admin_download_prediction_report' prediction.id %}"
+   class="back-button"
+   style="margin-left: 10px;">
+
+    📄 Download PDF Report
+
+</a>
+
+{% else %}
+
+
+        <a href="{% url 'user_dashboard' %}"
+        class="back-button">
+
+            ← Back to My Dashboard
+
+        </a>
+
+{% endif %}
 
     <!-- USER INFORMATION -->
 
@@ -236,6 +625,18 @@
                 </span>
 
             </div>
+
+            <div class="detail">
+
+            <span class="label">
+                Prediction ID
+            </span>
+
+            <span class="value">
+                #{{ prediction.id }}
+            </span>
+
+        </div>
 
         </div>
 
@@ -457,9 +858,75 @@
             </div>
 
         </div>
+    
+        <p style="
+    margin-top: 18px;
+    color: #8fa7b5;
+    font-size: 12px;
+    line-height: 1.6;
+    ">
+    💡 The estimated monthly bill is calculated from the predicted
+    electricity consumption using the configured slab-based billing
+    calculation.
+    </p>
 
     </section>
 
+    <!-- ENERGY SUMMARY -->
+
+<section class="section energy-summary">
+
+    <h2>
+        📊 Energy Consumption Summary
+    </h2>
+
+    <div class="energy-summary-card">
+
+        <div class="energy-summary-icon">
+            ⚡
+        </div>
+
+        <div class="energy-summary-content">
+
+            <span class="energy-summary-label">
+                Monthly Consumption Level
+            </span>
+
+            <strong class="energy-summary-level">
+                {% if prediction.predicted_consumption_kwh < 300 %}
+                    Low
+                {% elif prediction.predicted_consumption_kwh <= 600 %}
+                    Moderate
+                {% else %}
+                    High
+                {% endif %}
+            </strong>
+
+            <div class="energy-level-indicator">
+
+    <div class="energy-level-track">
+        <div class="energy-level-segment low"></div>
+        <div class="energy-level-segment moderate"></div>
+        <div class="energy-level-segment high"></div>
+    </div>
+
+    <div class="energy-level-labels">
+        <span>Low</span>
+        <span>Moderate</span>
+        <span>High</span>
+    </div>
+
+</div>
+
+            <p>
+                Based on the predicted monthly electricity consumption.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 </div>
 
