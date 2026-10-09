@@ -116,8 +116,8 @@ The model was trained and tuned for household electricity consumption prediction
 |---|---:|
 | Best Cross-Validation R² | 0.9601 |
 | Tuned R² | 0.9609 |
-| MAE | 43.58 |
-| RMSE | 61.74 |
+| MAE (kWh) | 43.58 |
+| RMSE (kWh) | 61.74 |
 
 ### Best Tuned Parameters
 
