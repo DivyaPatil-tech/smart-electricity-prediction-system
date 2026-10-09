@@ -453,6 +453,16 @@ Important: These instructions assume the repository contains the required model 
 
 ---
 
+## Trained Machine Learning Model
+
+The application uses a pre-trained Gradient Boosting Regressor for electricity consumption prediction.
+
+- Model package: "electricity_deployment_package_fixed.pkl"
+- Expected location: "ml_models/electricity_deployment_package_fixed.pkl"
+- Purpose: Loads the saved model and its supporting components for predictions without retraining the model for every request.
+
+Important: Ensure the model package is present at the expected location before running the application. The model package is required for prediction functionality.
+
 ## 🔐 Security Note
 
 Sensitive configuration must not be committed to a public GitHub repository.
