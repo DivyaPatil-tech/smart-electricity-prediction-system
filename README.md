@@ -175,11 +175,11 @@ The trained deployment package contains the required model and encoders used dur
 
 ## 💰 Electricity Bill Calculation
 
-After predicting monthly electricity consumption, the application estimates the electricity bill using slab-based billing logic.
+-After predicting monthly electricity consumption, the application estimates the electricity bill using slab-based billing logic.
 
-This allows the predicted consumption to be converted into an estimated monthly electricity cost in Indian Rupees.
+-This allows the predicted consumption to be converted into an estimated monthly electricity cost in Indian Rupees.
 
-The application displays both:
+-The application displays both:
 
 - Predicted monthly consumption
 - Estimated monthly electricity bill
@@ -280,45 +280,45 @@ Analytics / PDF Report
 ## 📈 Analytics
 
 The Admin Dashboard provides visual analytics including:
-Prediction Activity
-Monthly Consumption
-Monthly Estimated Bill
-Top Users by Consumption
-Consumption Level Distribution
-Highest Consumption Month
-Highest Bill Month
-The User Dashboard also provides personal electricity-consumption analytics.
+-Prediction Activity
+-Monthly Consumption
+-Monthly Estimated Bill
+-Top Users by Consumption
+-Consumption Level Distribution
+-Highest Consumption Month
+-Highest Bill Month
+-The User Dashboard also provides personal electricity-consumption analytics.
 
 ## 📄 PDF Reports
 
 Users and administrators can download prediction reports containing information such as:
-Username
-Month
-Prediction ID
-Predicted consumption
-Estimated monthly bill
-Consumption level
-Energy factors
-Recommendations
-Reports are generated using ReportLab.
+-Username
+-Month
+-Prediction ID
+-Predicted consumption
+-Estimated monthly bill
+-Consumption level
+-Energy factors
+-Recommendations
+-Reports are generated using ReportLab.
 
 ## 🤖 Smart Energy Chatbot
 
 The application includes a Smart Energy Assistant that allows users to ask questions related to:
-Electricity consumption
-Estimated electricity bills
-Energy-saving tips
-The chatbot communicates with the Django backend and displays the response directly in the application.
+-Electricity consumption
+-Estimated electricity bills
+-Energy-saving tips
+-The chatbot communicates with the Django backend and displays the response directly in the application.
 
 ## 🗄️ Database
 
-The application uses a relational database to store application and prediction information.
-User prediction records can be viewed through:
-User prediction history
-Admin prediction records
-User details
-Prediction details
-Analytics
+-The application uses a relational database to store application and prediction information.
+-User prediction records can be viewed through:
+-User prediction history
+-Admin prediction records
+-User details
+-Prediction details
+-Analytics
 
 ## 📁 Project Structure
 
@@ -375,52 +375,52 @@ http://127.0.0.1:8000/
 
 ## 🔐 Security Note
 
-Sensitive configuration such as:
-Django secret key
-Database username
-Database password
-Database configuration
+-Sensitive configuration such as:
+-Django secret key
+-Database username
+-Database password
+-Database configuration 
 should be stored in environment variables and should not be committed to a public GitHub repository.
 
 ## 🔮 Future Improvements
 
 Possible future enhancements include:
-Real-time smart-meter integration
-Larger real-world electricity datasets
-Advanced time-series forecasting
-Electricity tariff configuration by state/provider
-More advanced energy-consumption visualizations
-Mobile application
-Cloud deployment
-Personalized energy-saving alerts
-Integration with IoT smart-home devices
+-Real-time smart-meter integration
+-Larger real-world electricity datasets
+-Advanced time-series forecasting
+-Electricity tariff configuration by state/provider
+-More advanced energy-consumption visualizations
+-Mobile application
+-Cloud deployment
+-Personalized energy-saving alerts
+-Integration with IoT smart-home devices
 
 ## 👩‍💻 Developer
 
 Divya Sagar Patil
 Electrical Engineering Graduate transitioning into AI/ML, Data Analytics, and Python Development.
 Areas of Interest
-Python
-Machine Learning
-Data Analytics
-Generative AI
-Agentic AI
-Django
-AI-powered applications
+-Python
+-Machine Learning
+-Data Analytics
+-Generative AI
+-Agentic AI
+-Django
+-AI-powered applications
 
 ## ⭐ Project Highlights
 
-End-to-end Machine Learning application
-Pre-trained ML model integrated with Django
-Household electricity consumption prediction
-Electricity bill estimation
-User and Admin authentication
-MySQL database integration
-Prediction history
-Analytics dashboards
-PDF report generation
-Energy-saving recommendations
-Smart Energy chatbot
+-End-to-end Machine Learning application
+-Pre-trained ML model integrated with Django
+-Household electricity consumption prediction
+-Electricity bill estimation
+-User and Admin authentication
+-MySQL database integration
+-Prediction history
+-Analytics dashboards
+-PDF report generation
+-Energy-saving recommendations
+-Smart Energy chatbot
 
 
 
