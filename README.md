@@ -115,13 +115,13 @@ The model was trained and tuned for household electricity consumption prediction
 
 The Gradient Boosting Regressor was evaluated during model selection and hyperparameter tuning.
 
-'''text
+```text
 Metric| Reported Result
 Best Cross-Validation R² Score| 0.9601
 Tuned R² Score| 0.9609
 Mean Absolute Error (MAE)| 43.58
 Root Mean Squared Error (RMSE)| 61.74
-'''
+```
 
 Best Tuned Parameters
 - Learning Rate: 0.1
