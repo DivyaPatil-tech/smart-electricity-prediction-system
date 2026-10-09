@@ -215,6 +215,7 @@ The Machine Learning model is integrated into a Django web application that prov
 
 ## 🏗️ Application Architecture
 
+```text
 User
   |
   v
@@ -243,6 +244,7 @@ Slab-based Bill Calculation
   |
   v
 Prediction Results and History
+```
 
 ---
 
@@ -363,9 +365,9 @@ Stored information can be accessed through the implemented application features,
 MySQL is included in the technology stack. The database configuration must be set up correctly before running the application.
 
 ---
-
 ## 📁 Project Structure
 
+```text
 project/
 |
 +-- manage.py
@@ -381,6 +383,7 @@ project/
 | +-- profile_photos/
 +-- requirements.txt
 +-- README.md
+```
 
 This is a simplified representation of the project structure. The actual files and folders may vary.
 
