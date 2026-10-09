@@ -411,7 +411,7 @@ Prerequisites
 
 1. Clone the Repository
 
-``bash
+```bash
 git clone https://github.com/DivyaPatil-tech/smart-electricity-prediction-system.git
 cd smart-electricity-prediction-system
 ```
