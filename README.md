@@ -210,7 +210,7 @@ The Machine Learning model is integrated into a Django web application.
 
 ## 🏗️ Application Architecture
 
-```text
+c
 User
   │
   ▼
@@ -236,7 +236,7 @@ Slab-based Bill Calculation
   ├── Energy Factors
   ├── Recommendations
   └── PDF Report
-
+  ```
 ## 👥 User Workflow
 
 Home Page
