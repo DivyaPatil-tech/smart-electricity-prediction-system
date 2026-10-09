@@ -2,6 +2,29 @@
 
 A Machine Learning and Django-based web application that predicts household monthly electricity consumption and estimated electricity bills using household usage, appliance, occupancy, temperature, seasonal, and historical consumption information.
 
+## 🖥️ Application Preview
+
+### Home Page
+
+![Smart Energy Analytics Home Page](screenshots/home-page.png)
+
+### User Dashboard
+
+![Smart Energy User Dashboard](screenshots/user-dashboard.png)
+
+### Prediction Result
+
+![Smart Energy Electricity Consumption and Bill Prediction Result](screenshots/prediction-result.png)
+
+### User Analytics
+
+[Smart Energy User Analytics Dashboard](screenshots/user-analytics.png)
+
+### Admin Dashboard
+
+[Smart Energy Admin Dashboard Analytics](screenshots/admin-dashboard.png)
+
+
 ## 📌 Project Overview
 
 The Smart Household Electricity Consumption & Electricity Bill Prediction System is designed to help households estimate their monthly electricity consumption and electricity bill.
