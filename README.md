@@ -325,26 +325,19 @@ Analytics
 project/
 │
 ├── manage.py
-│
 ├── smart_electricity_project/
-│
 ├── prediction/
-│
 ├── templates/
-│
 ├── static/
 │ └── css/
 │ └── smart_energy.css
-│
 ├── ml_models/
 │ └── electricity_deployment_package_fixed.pkl
-│
 ├── media/
 │ └── profile_photos/
-│
 ├── requirements.txt
-│
 └── README.md
+
 
 ## ⚙️ Installation
 
