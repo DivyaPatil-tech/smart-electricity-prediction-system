@@ -113,7 +113,7 @@ The model was trained and tuned for household electricity consumption prediction
 
 ### Model Performance
 
--Metric| Result
+-Metric:-
 Best Cross-Validation R²| 0.9601,
 Tuned R²| 0.9609,
 MAE| 43.58,
