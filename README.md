@@ -411,9 +411,10 @@ Prerequisites
 
 1. Clone the Repository
 
+``bash
 git clone https://github.com/DivyaPatil-tech/smart-electricity-prediction-system.git
 cd smart-electricity-prediction-system
-
+```
 2. Create a Virtual Environment
 
 python -m venv venv
