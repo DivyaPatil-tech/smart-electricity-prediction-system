@@ -202,6 +202,7 @@ The Machine Learning model is integrated into a Django web application.
 - Python
 - Django
 - Machine Learning
+- Gradient Boosting Regression
 - Pandas
 - NumPy
 - Scikit-learn
