@@ -237,7 +237,7 @@ Slab-based Bill Calculation
   ├── Recommendations
   └── PDF Report
 
-👥 User Workflow
+## 👥 User Workflow
 
 Home Page
     ↓
@@ -258,7 +258,7 @@ Prediction Details
 Prediction History / Analytics / PDF Report
 
 
-👨‍💼 Admin Workflow
+## 👨‍💼 Admin Workflow
 
 Home Page
     ↓
@@ -277,7 +277,7 @@ Prediction Details
 Analytics / PDF Report
 
 
-📈 Analytics
+## 📈 Analytics
 
 The Admin Dashboard provides visual analytics including:
 Prediction Activity
@@ -289,7 +289,7 @@ Highest Consumption Month
 Highest Bill Month
 The User Dashboard also provides personal electricity-consumption analytics.
 
-📄 PDF Reports
+## 📄 PDF Reports
 
 Users and administrators can download prediction reports containing information such as:
 Username
@@ -302,7 +302,7 @@ Energy factors
 Recommendations
 Reports are generated using ReportLab.
 
-🤖 Smart Energy Chatbot
+## 🤖 Smart Energy Chatbot
 
 The application includes a Smart Energy Assistant that allows users to ask questions related to:
 Electricity consumption
@@ -310,7 +310,7 @@ Estimated electricity bills
 Energy-saving tips
 The chatbot communicates with the Django backend and displays the response directly in the application.
 
-🗄️ Database
+## 🗄️ Database
 
 The application uses a relational database to store application and prediction information.
 User prediction records can be viewed through:
@@ -320,7 +320,7 @@ User details
 Prediction details
 Analytics
 
-📁 Project Structure
+## 📁 Project Structure
 
 project/
 │
@@ -346,7 +346,7 @@ project/
 │
 └── README.md
 
-⚙️ Installation
+## ⚙️ Installation
 
 1. Clone the repository
 
@@ -380,7 +380,7 @@ python manage.py runserver
 Open the application in your browser:
 http://127.0.0.1:8000/
 
-🔐 Security Note
+## 🔐 Security Note
 
 Sensitive configuration such as:
 Django secret key
@@ -389,7 +389,7 @@ Database password
 Database configuration
 should be stored in environment variables and should not be committed to a public GitHub repository.
 
-🔮 Future Improvements
+## 🔮 Future Improvements
 
 Possible future enhancements include:
 Real-time smart-meter integration
@@ -402,7 +402,7 @@ Cloud deployment
 Personalized energy-saving alerts
 Integration with IoT smart-home devices
 
-👩‍💻 Developer
+## 👩‍💻 Developer
 
 Divya Sagar Patil
 Electrical Engineering Graduate transitioning into AI/ML, Data Analytics, and Python Development.
@@ -415,7 +415,7 @@ Agentic AI
 Django
 AI-powered applications
 
-⭐ Project Highlights
+## ⭐ Project Highlights
 
 End-to-end Machine Learning application
 Pre-trained ML model integrated with Django
