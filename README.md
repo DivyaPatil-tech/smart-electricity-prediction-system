@@ -18,11 +18,11 @@ A Machine Learning and Django-based web application that predicts household mont
 
 ### User Analytics
 
-[Smart Energy User Analytics Dashboard](screenshots/user-analytics.png)
+![Smart Energy User Analytics Dashboard](screenshots/user-analytics.png)
 
 ### Admin Dashboard
 
-[Smart Energy Admin Dashboard Analytics](screenshots/admin-dashboard.png)
+![Smart Energy Admin Dashboard Analytics](screenshots/admin-dashboard.png)
 
 
 ## 📌 Project Overview
