@@ -113,19 +113,28 @@ The model was trained and tuned for household electricity consumption prediction
 
 ### Model Performance
 
--Metric:-
-Best Cross-Validation R²| 0.9601,
-Tuned R²| 0.9609,
-MAE| 43.58,
-RMSE| 61.74.
+The Gradient Boosting Regressor was evaluated during model selection and hyperparameter tuning.
 
-Note: MAE and RMSE are expressed in the target variable's units. For the consumption prediction model, these are kWh if the evaluation target was measured in kWh.
+'''text
+Metric| Reported Result
+Best Cross-Validation R² Score| 0.9601
+Tuned R² Score| 0.9609
+Mean Absolute Error (MAE)| 43.58
+Root Mean Squared Error (RMSE)| 61.74
+'''
 
-### Best Tuned Parameters
+Best Tuned Parameters
+- Learning Rate: 0.1
+- Maximum Depth: 3
+- Number of Estimators: 150
 
-- Learning Rate: "0.1"
-- Maximum Depth: "3"
-- Number of Estimators: "150"
+Interpretation
+
+- R²: The reported scores indicate that the model achieved a strong fit on the evaluated data.
+- MAE: Measures the average absolute difference between actual and predicted values.
+- RMSE: Measures prediction error while penalizing larger errors more heavily than MAE.
+
+Evaluation note: The MAE and RMSE values are reported from the model-selection or tuning evaluation. They should not be interpreted as independent test-set results unless separately verified. Error metrics use the target variable's units; if the target was monthly electricity consumption measured in kWh, the units are kWh.
 
 ---
 
