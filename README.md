@@ -113,11 +113,11 @@ The model was trained and tuned for household electricity consumption prediction
 
 ### Model Performance
 
-Metric| Result
-Best Cross-Validation R²| 0.9601
-Tuned R²| 0.9609
-MAE| 43.58
-RMSE| 61.74
+-Metric| Result
+-Best Cross-Validation R²| 0.9601
+-Tuned R²| 0.9609
+-MAE| 43.58
+-RMSE| 61.74
 
 Note: MAE and RMSE are expressed in the target variable's units. For the consumption prediction model, these are kWh if the evaluation target was measured in kWh.
 
