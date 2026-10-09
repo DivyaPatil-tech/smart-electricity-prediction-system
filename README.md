@@ -210,7 +210,7 @@ The Machine Learning model is integrated into a Django web application.
 
 ## 🏗️ Application Architecture
 
-c
+ ```text
 User
   │
   ▼
