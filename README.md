@@ -156,13 +156,6 @@ Major input features include:
 - Previous Month Consumption
 - Season
 - Cooling Degree
-
-Additional feature engineering includes:
-
-- Month Number
-- Season
-- Cooling Degree
-
 ---
 
 ## 🧠 Feature Engineering
