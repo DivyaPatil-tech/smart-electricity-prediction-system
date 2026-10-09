@@ -249,7 +249,7 @@ Prediction Results and History
 ---
 
 ## 👥 User Workflow
-
+```text
 Home Page
     |
     v
@@ -275,11 +275,11 @@ Prediction Details
     |
     v
 Prediction History / Analytics / PDF Report
-
+```
 ---
 
 ## 👨‍💼 Admin Workflow
-
+```text
 Home Page
     |
     v
@@ -302,7 +302,7 @@ Prediction Details
     |
     v
 Analytics / PDF Report
-
+```
 ---
 
 ## 📈 Analytics
